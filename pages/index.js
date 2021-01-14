@@ -1,5 +1,5 @@
-import SampleComponent from '../components/SampleComponent'
+import Timeline from "../components/Timeline";
 
 export default function Home() {
-  return <SampleComponent title="Index Page" linkTo="/other" />
+  return <Timeline title="Index Page" linkTo="/other" />;
 }

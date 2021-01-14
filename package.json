@@ -7,15 +7,31 @@
     "start": "next start"
   },
   "dependencies": {
-    "mobx": "3.3.1",
-    "mobx-react": "^4.0.4",
-    "mobx-state-tree": "1.0.1",
+    "@babel/core": "^7.12.10",
+    "@fontsource/lora": "^4.1.0",
+    "@fontsource/vollkorn": "^4.1.0",
+    "d3-ease": "^2.0.0",
+    "d3-format": "^2.0.0",
+    "d3-scale": "^3.2.3",
+    "date-fns": "^2.16.1",
+    "mobx": "^6.0.4",
+    "mobx-react": "^6.1.4",
+    "mobx-react-lite": "^3.1.6",
+    "mobx-state-tree": "^4.0.2",
     "next": "latest",
+    "ramda": "^0.27.1",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-element-scroll-hook": "^1.1.0",
+    "react-intersection-observer": "^8.31.0",
+    "react-move": "^6.4.0",
+    "react-spring": "^8.0.27",
+    "styled-components": "^5.2.1",
+    "styled-tools": "^1.7.2"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.1.2"
+    "@babel/plugin-proposal-decorators": "^7.1.2",
+    "babel-plugin-styled-components": "^1.12.0"
   },
   "license": "MIT"
 }

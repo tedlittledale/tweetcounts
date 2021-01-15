@@ -23,7 +23,7 @@ const PointsWrap = styled("svg")`
 
 const colors = [
   "#006B3E",
-  "#FFE733",
+  "#E9B949",
   "#FF8C01",
   "#ED2938",
   convertHexToRGBA("#ED2938", 60)
@@ -37,19 +37,17 @@ const highlightLabels = [
   "Cornwall"
 ];
 
-const Points = ({ points, currentPoints }) => {
+const Points = ({ keyCharts, currentPoints, isMobile }) => {
   const springs = useSprings(
-    points.length,
-    points.map(({ x, y, tier, label }, idx) => ({
+    currentPoints.length,
+    currentPoints.map(({ x, tier, label }, idx) => ({
       x,
-      y,
       tier,
       label,
-      y2: currentPoints[idx].y,
       config: { duration: 500 }
     }))
   );
-  console.log({ points });
+
   return (
     <>
       <PointsWrap>
@@ -64,14 +62,18 @@ const Points = ({ points, currentPoints }) => {
               cy={y}
               r="4"
             /> */}
-            <animated.line
-              x1={x}
-              y1={y}
-              x2={x}
-              y2={y2}
-              strokeWidth={4}
-              stroke={convertHexToRGBA(colors[points[idx].tier - 1], 90)}
-            />
+            {keyCharts.map((chartPoints, idx2) => (
+              <animated.line
+                x1={x}
+                y1={
+                  idx2 === 0 ? currentPoints[idx].y : keyCharts[idx2 - 1][idx].y
+                }
+                x2={x}
+                y2={chartPoints[idx].y}
+                strokeWidth={isMobile ? 2 : 4}
+                stroke={convertHexToRGBA(colors[chartPoints[idx].tier - 1], 80)}
+              />
+            ))}
           </g>
         ))}
       </PointsWrap>

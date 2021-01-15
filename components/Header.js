@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
+import { media } from "../utils/media";
 
 const Wrapper = styled("header")`
   height: 100vh;
@@ -13,9 +14,13 @@ const Wrapper = styled("header")`
   }
   h1 {
     font-size: 90px;
+    ${media.phablet`font-size: 40px;`}
+    ${media.phone`font-size: 40px;`}
   }
   p {
     font-size: 30px;
+    ${media.phablet`font-size: 20px;`}
+    ${media.phone`font-size: 20px;`}
   }
 `;
 

@@ -5,10 +5,10 @@ import convertHexToRGBA from "../utils/hextorgba";
 
 const colors = [
   "#006B3E",
-  "#FFE733",
+  "#E9B949",
   "#FF8C01",
   "#ED2938",
-  convertHexToRGBA("#ED2938", 60)
+  convertHexToRGBA("#000000", 60)
 ];
 
 const LegendWrap = styled("svg")`
@@ -20,84 +20,76 @@ const LegendWrap = styled("svg")`
   width: 100%;
   top: 0;
   left: 0;
-  line {
-    stroke: #d8d8d8;
-  }
+
   text {
     color: black;
     font-size: 12px;
-  }
-  line {
-    stroke: black;
+    border: 1px solid grey;
   }
 `;
 
-const Legend = ({ tiers, width, keyDateLegend }) => {
+const Legend = ({ tiers, width, keyDateLegend, isMobile }) => {
   console.log({ tiers });
-
+  const margin = isMobile ? 20 : 100;
+  const marginY = isMobile ? 40 : 100;
   return (
     <LegendWrap>
       <filter x="0" y="0" width="1" height="1" id="solid">
-        <feFlood floodColor="grey" result="bg" />
+        <feFlood floodColor="white" result="bg" />
         <feMerge>
           <feMergeNode in="bg" />
           <feMergeNode in="SourceGraphic" />
         </feMerge>
       </filter>
       <g filter="url(#solid)">
-        {tiers.map((tier, idx) => (
-          <>
-            <text
-              filter="url(#solid)"
-              y={100 + idx * 20}
-              x={width - 110}
-              textAnchor="end"
-              alignmentBaseline="middle"
-            >
-              Tier {tier}
-            </text>
-            <circle
-              fill={convertHexToRGBA(colors[tier - 1], 100)}
-              strokeWidth={1}
-              cx={width - 100}
-              cy={100 + idx * 20}
-              r="4"
-            />
-          </>
-        ))}
+        {Array(tiers[tiers.length - 1])
+          .fill()
+          .map((tier, idx) => (
+            <>
+              <text
+                filter="url(#solid)"
+                y={marginY + idx * 20}
+                x={width - margin - 10}
+                textAnchor="end"
+                alignmentBaseline="middle"
+              >
+                {idx < 4 ? `Tier ${idx + 1}` : "Lockdown"}
+              </text>
+              <circle
+                fill={convertHexToRGBA(colors[idx], 100)}
+                strokeWidth={1}
+                cx={width - margin}
+                cy={marginY + idx * 20}
+                r="4"
+              />
+            </>
+          ))}
         {keyDateLegend && (
           <>
             <text
               filter="url(#solid)"
-              y={100 + tiers.length * 20}
-              x={width - 110}
+              y={marginY + tiers[tiers.length - 1] * 20}
+              x={width - margin - 10}
               textAnchor="end"
               alignmentBaseline="middle"
             >
-              Increase since {keyDateLegend} tiers changes
+              Previous tiers and cases
             </text>
-            <circle
-              fill={convertHexToRGBA(colors[2], 30)}
-              strokeWidth={1}
-              cx={width - 100}
-              cy={100 + tiers.length * 20}
-              r="4"
+            <line
+              x1={width - margin}
+              y1={marginY - 10 + tiers[tiers.length - 1] * 20}
+              x2={width - margin}
+              y2={marginY + 10 + tiers[tiers.length - 1] * 20}
+              strokeWidth={4}
+              stroke={convertHexToRGBA(colors[0], 90)}
             />
-            <text
-              filter="url(#solid)"
-              y={100 + tiers.length * 20}
-              x={width - 110}
-              textAnchor="end"
-              alignmentBaseline="middle"
-            >
-              Increase since {keyDateLegend} tiers changes
-            </text>
-            <circle
-              fill={convertHexToRGBA(colors[2], 30)}
-              strokeWidth={1}
-              cx={width - 100}
-              cy={100 + tiers.length * 20}
-              r="4"
+            <line
+              x1={width - margin}
+              y1={marginY + 10 + tiers[tiers.length - 1] * 20}
+              x2={width - margin}
+              y2={marginY + 30 + tiers[tiers.length - 1] * 20}
+              strokeWidth={4}
+              stroke={convertHexToRGBA(colors[1], 90)}
             />
           </>
         )}

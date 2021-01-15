@@ -3,6 +3,7 @@ import { scaleLinear, scaleLog } from "d3-scale";
 import { format } from "d3-format";
 import { AppModel } from "./appModel";
 import auth from "../utils/auth";
+import { sizes } from "../utils/media";
 import { propEq, sort, uniq, findIndex } from "ramda";
 
 const DataLine = types.model("DataLine", {
@@ -24,6 +25,8 @@ export const CovidChart = types
     minX: 0,
     maxX: types.maybeNull(types.number),
     width: types.maybeNull(types.number),
+    height: types.maybeNull(types.number),
+    isMobile: types.maybeNull(types.boolean),
     tiers: types.maybeNull(types.array(types.number)),
     englandTotal: types.maybeNull(types.number),
     state: "init"
@@ -65,22 +68,28 @@ export const CovidChart = types
       self.data = rankedData;
       self.setUpScales({ width: self.width });
     },
-    setUpScales({ width }) {
+    setUpScales({ width, height }) {
+      console.log({ width, height });
       if (!width) {
         return;
       }
+      const isMobile = width < sizes.phablet;
+      self.isMobile = isMobile;
       self.width = width;
       let maxY = 0,
         minY = 0,
         maxX = 0,
         minX = 0;
-      const paddingX = 30;
-      const paddingXLeft = 50;
+      const paddingX = isMobile ? 0 : 0;
+      const paddingXLeft = isMobile ? 30 : 50;
       const paddingRight = 0;
-      const marginX = 30;
-      const marginY = 30;
-      const marginTop = 30;
-      const chartHeight = 500;
+      const marginX = isMobile ? 30 : 0;
+      const marginY = isMobile ? 30 : 0;
+      const marginTop = isMobile ? 30 : 0;
+      const chartHeight = height
+        ? Math.round(isMobile ? height / 2 : 500)
+        : self.height;
+      self.height = chartHeight;
       self.allData.forEach(({ cases_07da }) => {
         maxY = Math.max(maxY, parseInt(cases_07da, 10));
       });

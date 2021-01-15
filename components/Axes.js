@@ -51,12 +51,12 @@ const XAxis = styled.svg`
   }
 `;
 
-const Axes = ({ yTicks, xTicks, yLabel, xLabel }) => {
+const Axes = ({ yTicks, xTicks, yLabel, xLabel, height, isMobile }) => {
   return (
     <AxesWrap>
       <YAxis>
         <text
-          x={-250}
+          x={-(height / 2)}
           y={5}
           transform="rotate(-90)"
           textAnchor="middle"
@@ -74,12 +74,12 @@ const Axes = ({ yTicks, xTicks, yLabel, xLabel }) => {
         ))}
       </YAxis>
       <XAxis>
-        <text x="50%" y={470} textAnchor="middle" dy="1em">
+        <text x="50%" y={height - 30} textAnchor="middle" dy="1em">
           {xLabel}
         </text>
         <svg
-          x="58%"
-          y={468}
+          x={isMobile ? "70%" : "58%"}
+          y={height - 32}
           width="24"
           height="24"
           xmlns="http://www.w3.org/2000/svg"

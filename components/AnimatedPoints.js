@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSprings, animated } from "react-spring";
 import styled, { keyframes } from "styled-components";
 import { prop, withProp } from "styled-tools";
-import { includes } from "ramda";
+import { includes, append, without } from "ramda";
 
 import convertHexToRGBA from "../utils/hextorgba";
 
@@ -19,20 +19,22 @@ const PointsWrap = styled("svg")`
     stroke: #d8d8d8;
   }
   text {
-    color: black;
     font-size: 12px;
   }
   line {
     stroke: black;
   }
+  circle {
+    cursor: pointer;
+  }
 `;
 
 const colors = [
   "#006B3E",
-  "#FFE733",
+  "#E9B949",
   "#FF8C01",
   "#ED2938",
-  convertHexToRGBA("#ED2938", 60)
+  convertHexToRGBA("#000000", 60)
 ];
 const highlightLabels = [
   "Medway",
@@ -44,7 +46,8 @@ const highlightLabels = [
   "Cornwall"
 ];
 
-const Points = ({ points = [], total }) => {
+const Points = ({ points = [], total, isMobile }) => {
+  const [labels, setLabels] = useState(highlightLabels);
   const springs = useSprings(
     points.length,
     points.map(({ x, y, tier, label }) => ({
@@ -67,7 +70,7 @@ const Points = ({ points = [], total }) => {
     <>
       <PointsWrap>
         <defs>
-          <filter x="0" y="0" width="1" height="1" id="solid">
+          <filter x="0" y="0" width="1" height="1" id="solidwhite">
             <feFlood floodColor="white" result="bg" />
             <feMerge>
               <feMergeNode in="bg" />
@@ -83,23 +86,35 @@ const Points = ({ points = [], total }) => {
               stroke={"black"}
               strokeWidth={points[idx].label === "Camden" ? 0 : 0}
               cx={x}
-              cy={y}
-              r="4"
+              cy={points[idx].y}
+              r={isMobile ? 2 : 4}
+              data-areaname={points[idx].label}
+              onMouseEnter={(e) => {
+                setLabels(
+                  append(e.currentTarget.dataset.areaname, highlightLabels)
+                );
+              }}
             />
-            {(includes(points[idx].label, highlightLabels) ||
+            {(includes(points[idx].label, labels) ||
               points[idx].rank === 0 ||
               points[idx].rank === points.length - 1) && (
               <>
                 <animated.text
-                  filter="url(#solid)"
+                  filter="url(#solidwhite)"
                   x={x2}
-                  y={y}
+                  y={points[idx].y}
                   dy={-20}
                   textAnchor="middle"
                 >
                   {points[idx].label}
                 </animated.text>
-                <animated.line x1={x} y1={y} x2={x2} y2={y2} strokeWidth={2} />
+                <animated.line
+                  x1={x}
+                  y1={points[idx].y}
+                  x2={x2}
+                  y2={points[idx].y - 17}
+                  strokeWidth={2}
+                />
               </>
             )}
           </g>

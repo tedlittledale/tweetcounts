@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
+import { withProp } from "styled-tools";
 import { compose } from "ramda";
 import { observer, useObservable, useObserver } from "mobx-react-lite";
 import { injectPick, withPaths } from "../utils/store";
-
 import Axes from "./Axes";
 import Legend from "./Legend";
 import GhostPoints from "./GhostPoints";
@@ -15,24 +15,15 @@ const ChartWrap = styled("div")`
   position: relative;
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  h2 {
-    background-image: linear-gradient(
-      to bottom right,
-      hsl(205, 87%, 29%),
-      hsl(205, 76%, 39%)
-    );
-    margin: 0 0 10px;
-    padding: 20px 40px;
-    border-radius: 5px 5px 0 0;
-    text-align: left;
-    color: #fff;
-    font-weight: normal;
-    letter-spacing: 0.8px;
-  }
+  background: var(--color-page-background);
   > div {
     max-width: 960px;
-    ${media.phablet`width: 90%;`}
-    ${media.phone`width: 90%;`}
+    ${media.phablet`width: 100%;`}
+    ${media.phone`width: 100%;`}
+    ${withProp(
+      "chartHeight",
+      (chartHeight) => `height: ${chartHeight ? chartHeight : 0}px;`
+    )}
     border-radius: 5px;
     box-sizing: border-box;
     background: white;
@@ -59,14 +50,15 @@ const CovidChart = ({ currentChart, currentDate, timelineModel }) => {
   const targetRef = useRef();
   useEffect(() => {
     const { width } = targetRef.current.getBoundingClientRect();
-    currentChart && currentChart.setUpScales({ width });
+    const height = window.innerHeight;
+    currentChart && currentChart.setUpScales({ width, height });
   }, [currentDate]);
   console.log(currentChart.tiers.toJSON());
   const currentPoints =
     currentChart.state === "ready" ? currentChart.points() : [];
   return (
     <>
-      <ChartWrap>
+      <ChartWrap chartHeight={currentChart.height}>
         <div ref={targetRef}>
           {currentChart && currentChart.state === "ready" ? (
             <div>
@@ -75,23 +67,30 @@ const CovidChart = ({ currentChart, currentDate, timelineModel }) => {
                 xTicks={currentChart.xAxis()}
                 xLabel="Rank of case rate"
                 yLabel="New cases (7 day rolling average)"
+                height={currentChart.height}
+                isMobile={currentChart.isMobile}
               ></Axes>
-
-              {keyCharts.map((keyChart) => (
-                <GhostPoints
-                  currentPoints={currentPoints}
-                  points={currentChart.getGhostPoints(keyChart)}
-                ></GhostPoints>
-              ))}
-              <AnimatedPoints
-                total={currentChart.englandTotal}
-                points={currentPoints}
-              ></AnimatedPoints>
               <Legend
                 tiers={currentChart.tiers.toJSON()}
                 keyDateLegend={timelineModel.getKeyChartLegend()}
                 width={currentChart.width}
+                height={currentChart.height}
+                isMobile={currentChart.isMobile}
               />
+              {keyCharts && (
+                <GhostPoints
+                  currentPoints={currentPoints}
+                  isMobile={currentChart.isMobile}
+                  keyCharts={keyCharts.map((keyChart) =>
+                    currentChart.getGhostPoints(keyChart)
+                  )}
+                ></GhostPoints>
+              )}
+              <AnimatedPoints
+                total={currentChart.englandTotal}
+                isMobile={currentChart.isMobile}
+                points={currentPoints}
+              ></AnimatedPoints>
             </div>
           ) : (
             <p>Loading</p>

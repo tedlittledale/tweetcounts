@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Day from "./Day";
+import { media } from "../utils/media";
 
 const DatesWrap = styled.div`
   position: relative;
   z-index: 100000;
   margin-left: 20px;
+  ${media.phablet`padding-top:300px`}
+  ${media.phone`padding-top:300px`}
 `;
 
 const DatesContainer = () => {

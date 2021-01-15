@@ -58,6 +58,16 @@ export const TimelineModel = types
       return last ? last : null;
     },
     updateDate(date) {
+      console.log(self.timeoutId);
+      if (typeof self.timeoutId === "number") {
+        clearTimeout(self.timeoutId);
+      }
+      self.timeoutId = setTimeout(() => {
+        self.setDate(date);
+      }, 100);
+    },
+    setDate(date) {
+      console.log({ date });
       self.currentDate = date;
       self.setCurrentChart();
     },

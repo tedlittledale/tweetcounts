@@ -35,7 +35,7 @@ const XAxis = styled.svg`
   display: grid;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 120%;
   left: 0;
   top: 0;
   /* display: grid;
@@ -74,17 +74,14 @@ const Axes = ({ yTicks, xTicks, yLabel, xLabel, height, isMobile }) => {
         ))}
       </YAxis>
       <XAxis>
-        <text x="50%" y={height - 30} textAnchor="middle" dy="1em">
+        <text x="50%" y={isMobile ? height : 530} textAnchor="middle" dy="1em">
           {xLabel}
         </text>
         <svg
           x={isMobile ? "70%" : "58%"}
-          y={height - 32}
+          y={(isMobile ? height : 530) - 32}
           width="24"
           height="24"
-          xmlns="http://www.w3.org/2000/svg"
-          fillRule="evenodd"
-          clipRule="evenodd"
         >
           <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z" />
         </svg>

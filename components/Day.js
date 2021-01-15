@@ -15,7 +15,7 @@ import DayContent from "./DayContent";
 const DayWrap = styled.div``;
 
 const TrackerDiv = styled("div")`
-  margin-top: -150px;
+  margin-top: -130px;
   height: 1px;
   width: 100%;
   margin-bottom: 150px;

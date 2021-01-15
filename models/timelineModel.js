@@ -13,7 +13,6 @@ const DataLine = types.model("DataLine", {
   cases_today: types.number,
   cases_07da: types.number
 });
-console.log({ test: "test" });
 export const TimelineModel = types
   .model("TimelineModel", {
     currentDate: types.maybeNull(types.string),
@@ -24,7 +23,6 @@ export const TimelineModel = types
   })
   .actions((self) => ({
     afterCreate() {
-      console.log("Created a new timeline!");
       self.currentDate = "2020-12-02";
       self.setCurrentChart();
       self.keyDates.map((date) => {
@@ -58,7 +56,6 @@ export const TimelineModel = types
       return last ? last : null;
     },
     updateDate(date) {
-      console.log(self.timeoutId);
       if (typeof self.timeoutId === "number") {
         clearTimeout(self.timeoutId);
       }
@@ -67,7 +64,6 @@ export const TimelineModel = types
       }, 100);
     },
     setDate(date) {
-      console.log({ date });
       self.currentDate = date;
       self.setCurrentChart();
     },
@@ -78,7 +74,6 @@ export const TimelineModel = types
         self.allData
       );
       self.currentChart.setData(currentChartData.map((data) => data.toJSON()));
-      console.log({ currentChartData });
     }
   }))
   .views((self) => {

@@ -5,6 +5,7 @@ import { prop, withProp } from "styled-tools";
 import { includes } from "ramda";
 
 import convertHexToRGBA from "../utils/hextorgba";
+import highlightPoints from "../models/highlightPoints";
 
 const PointsWrap = styled("svg")`
   display: grid;
@@ -37,7 +38,7 @@ const highlightLabels = [
   "Cornwall"
 ];
 
-const Points = ({ keyCharts, currentPoints, isMobile }) => {
+const Points = ({ keyCharts, currentPoints, isMobile, date }) => {
   const springs = useSprings(
     currentPoints.length,
     currentPoints.map(({ x, tier, label }, idx) => ({
@@ -64,6 +65,14 @@ const Points = ({ keyCharts, currentPoints, isMobile }) => {
             /> */}
             {keyCharts.map((chartPoints, idx2) => (
               <animated.line
+                strokeOpacity={
+                  highlightPoints[date] &&
+                  highlightPoints[date][currentPoints[idx].label]
+                    ? 1
+                    : highlightPoints[date]
+                    ? 0.2
+                    : 1
+                }
                 x1={x}
                 y1={
                   idx2 === 0 ? currentPoints[idx].y : keyCharts[idx2 - 1][idx].y

@@ -40,11 +40,11 @@ export const CovidChart = types
       let total = 0;
       const sortedData = sort(
         ({ cases_07da: a, tier: c }, { cases_07da: b, tier: d }) => {
-          return a > b ? -1 : 1;
+          return a < b ? -1 : 1;
         },
         data
       ).sort(({ cases_07da: a, tier: c }, { cases_07da: b, tier: d }) => {
-        return c > d ? -1 : 1;
+        return c < d ? -1 : 1;
       }, data);
       const alphabeticData = sort(({ areaName: a }, { areaName: b }) => {
         return a < b ? -1 : 1;
@@ -69,21 +69,21 @@ export const CovidChart = types
       self.setUpScales({ width: self.width });
     },
     setUpScales({ width, height }) {
-      console.log({ width, height });
       if (!width) {
         return;
       }
       const isMobile = width < sizes.phablet;
+      console.log({ isMobile });
       self.isMobile = isMobile;
       self.width = width;
       let maxY = 0,
         minY = 0,
         maxX = 0,
         minX = 0;
-      const paddingX = isMobile ? 0 : 0;
-      const paddingXLeft = isMobile ? 30 : 50;
-      const paddingRight = 0;
-      const marginX = isMobile ? 30 : 0;
+      const paddingX = isMobile ? 20 : 30;
+      const paddingXLeft = isMobile ? 30 : 60;
+      const paddingRight = 50;
+      const marginX = isMobile ? 10 : 20; //right margin
       const marginY = isMobile ? 30 : 0;
       const marginTop = isMobile ? 30 : 0;
       const chartHeight = height
@@ -100,10 +100,7 @@ export const CovidChart = types
         .range([marginTop, chartHeight - marginY - marginTop]);
       self.xScale = scaleLinear()
         .domain([minX, maxX])
-        .range([
-          paddingXLeft + marginY,
-          width - marginX - paddingX - paddingRight
-        ]);
+        .range([paddingXLeft + marginY, width - marginX - paddingX]);
       //   self.xScale = scaleLog()
       //     .base(2)
       //     .domain([minWeight, maxWeight])
@@ -130,7 +127,7 @@ export const CovidChart = types
     },
     getLines(chartData) {
       const sortedData = sort(({ cases_07da: a }, { cases_07da: b }) => {
-        return a > b ? -1 : 1;
+        return a < b ? -1 : 1;
       }, chartData);
       return sortedData
         .map(

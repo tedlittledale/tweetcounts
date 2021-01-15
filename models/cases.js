@@ -779,7 +779,7 @@ export default [
   {
     "areaName": "Wokingham",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 1921,
     "cases_07da": 298,
     "cases_today": 30
@@ -1419,7 +1419,7 @@ export default [
   {
     "areaName": "Windsor and Maidenhead",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 2156,
     "cases_07da": 282,
     "cases_today": 36
@@ -2699,7 +2699,7 @@ export default [
   {
     "areaName": "West Berkshire",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 1587,
     "cases_07da": 269,
     "cases_today": 25
@@ -14539,7 +14539,7 @@ export default [
   {
     "areaName": "Reading",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 2509,
     "cases_07da": 389,
     "cases_today": 23
@@ -14859,7 +14859,7 @@ export default [
   {
     "areaName": "Portsmouth",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 2762,
     "cases_07da": 336,
     "cases_today": 44
@@ -15499,7 +15499,7 @@ export default [
   {
     "areaName": "Peterborough",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 3103,
     "cases_07da": 363,
     "cases_today": 43
@@ -17099,7 +17099,7 @@ export default [
   {
     "areaName": "North Somerset",
     "day": "2020-12-19",
-    "tier": 3,
+    "tier": 2,
     "cases": 2336,
     "cases_07da": 170,
     "cases_today": 22
@@ -18699,7 +18699,7 @@ export default [
   {
     "areaName": "Milton Keynes",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 2630,
     "cases_07da": 638,
     "cases_today": 84
@@ -20299,7 +20299,7 @@ export default [
   {
     "areaName": "Luton",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 3872,
     "cases_07da": 462,
     "cases_today": 58
@@ -25099,7 +25099,7 @@ export default [
   {
     "areaName": "Herefordshire, County of",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 1,
     "cases": 1523,
     "cases_07da": 124,
     "cases_today": 30
@@ -32779,7 +32779,7 @@ export default [
   {
     "areaName": "Central Bedfordshire",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 2039,
     "cases_07da": 382,
     "cases_today": 51
@@ -34379,7 +34379,7 @@ export default [
   {
     "areaName": "Bristol, City of",
     "day": "2020-12-19",
-    "tier": 3,
+    "tier": 2,
     "cases": 3722,
     "cases_07da": 145,
     "cases_today": 18
@@ -35659,7 +35659,7 @@ export default [
   {
     "areaName": "Bracknell Forest",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 2026,
     "cases_07da": 393,
     "cases_today": 50
@@ -37899,7 +37899,7 @@ export default [
   {
     "areaName": "Bedford",
     "day": "2020-12-19",
-    "tier": 2,
+    "tier": 3,
     "cases": 2718,
     "cases_07da": 413,
     "cases_today": 67

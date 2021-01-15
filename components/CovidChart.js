@@ -46,14 +46,12 @@ const Credit = styled.div`
 
 const CovidChart = ({ currentChart, currentDate, timelineModel }) => {
   const keyCharts = timelineModel.getKeyChart();
-  console.log({ keyCharts });
   const targetRef = useRef();
   useEffect(() => {
     const { width } = targetRef.current.getBoundingClientRect();
     const height = window.innerHeight;
     currentChart && currentChart.setUpScales({ width, height });
   }, [currentDate]);
-  console.log(currentChart.tiers.toJSON());
   const currentPoints =
     currentChart.state === "ready" ? currentChart.points() : [];
   return (
@@ -79,6 +77,7 @@ const CovidChart = ({ currentChart, currentDate, timelineModel }) => {
               />
               {keyCharts && (
                 <GhostPoints
+                  date={timelineModel.currentDate}
                   currentPoints={currentPoints}
                   isMobile={currentChart.isMobile}
                   keyCharts={keyCharts.map((keyChart) =>
@@ -87,6 +86,7 @@ const CovidChart = ({ currentChart, currentDate, timelineModel }) => {
                 ></GhostPoints>
               )}
               <AnimatedPoints
+                date={timelineModel.currentDate}
                 total={currentChart.englandTotal}
                 isMobile={currentChart.isMobile}
                 points={currentPoints}

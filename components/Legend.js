@@ -29,9 +29,9 @@ const LegendWrap = styled("svg")`
 `;
 
 const Legend = ({ tiers, width, keyDateLegend, isMobile }) => {
-  console.log({ tiers });
   const margin = isMobile ? 20 : 100;
   const marginY = isMobile ? 40 : 100;
+  console.log({ isMobile });
   return (
     <LegendWrap>
       <filter x="0" y="0" width="1" height="1" id="solid">

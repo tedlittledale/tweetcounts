@@ -5,6 +5,7 @@ import { prop, withProp } from "styled-tools";
 import { includes, append, without } from "ramda";
 
 import convertHexToRGBA from "../utils/hextorgba";
+import highlightPoints from "../models/highlightPoints";
 
 const PointsWrap = styled("svg")`
   display: grid;
@@ -37,16 +38,18 @@ const colors = [
   convertHexToRGBA("#000000", 60)
 ];
 const highlightLabels = [
-  "Medway",
-  "Camden",
-  "Havering",
-  "Basildon",
-  "Liverpool",
-  "Bristol, City of",
-  "Cornwall"
+  "Oxfordshire"
+  // "Camden",
+  // "Havering",
+  // "Basildon",
+  // "Liverpool",
+  // "Bristol, City of",
+  // "Cornwall"
 ];
 
-const Points = ({ points = [], total, isMobile }) => {
+const temp = {};
+
+const Points = ({ points = [], total, isMobile, date }) => {
   const [labels, setLabels] = useState(highlightLabels);
   const springs = useSprings(
     points.length,
@@ -82,6 +85,14 @@ const Points = ({ points = [], total, isMobile }) => {
         {springs.map(({ x, y, x2, y2 }, idx) => (
           <g key={idx}>
             <animated.circle
+              fillOpacity={
+                highlightPoints[date] &&
+                highlightPoints[date][points[idx].label]
+                  ? 1
+                  : highlightPoints[date]
+                  ? 0.2
+                  : 1
+              }
               fill={colors[points[idx].tier - 1]}
               stroke={"black"}
               strokeWidth={points[idx].label === "Camden" ? 0 : 0}
@@ -90,14 +101,16 @@ const Points = ({ points = [], total, isMobile }) => {
               r={isMobile ? 2 : 4}
               data-areaname={points[idx].label}
               onMouseEnter={(e) => {
+                temp[e.currentTarget.dataset.areaname] = 1;
+                console.log(JSON.stringify(temp));
                 setLabels(
                   append(e.currentTarget.dataset.areaname, highlightLabels)
                 );
               }}
             />
             {(includes(points[idx].label, labels) ||
-              points[idx].rank === 0 ||
-              points[idx].rank === points.length - 1) && (
+              (highlightPoints[date] &&
+                highlightPoints[date][points[idx].label] === 2)) && (
               <>
                 <animated.text
                   filter="url(#solidwhite)"

@@ -33,13 +33,16 @@ export const CovidChart = types
     state: "init"
   })
   .actions((self) => ({
-    setAllData: (allData) => {
-      self.allData = allData.toJSON();
+    setCases: (cases) => {
+      self.allData = cases;
     },
     setAnnotation: (annotation) => {
       self.annotation = annotation;
     },
     setData: (data) => {
+      if (data.length === 0) {
+        return;
+      }
       const allTiers = [];
       let total = 0;
       const sortedData = sort(
@@ -94,6 +97,7 @@ export const CovidChart = types
         ? Math.round(isMobile ? (height * 2) / 3 : height - 100)
         : self.height;
       self.height = chartHeight;
+      console.log(self.allData.toJSON());
       self.allData.forEach(({ cases_07da }) => {
         maxY = Math.max(maxY, parseInt(cases_07da, 10));
       });

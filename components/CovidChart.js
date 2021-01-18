@@ -40,7 +40,6 @@ const ChartWrap = styled("div")`
 const CovidChart = ({
   currentChart,
   currentChart: { annotation, width, height, state },
-  currentDate,
   timelineModel
 }) => {
   const keyCharts = timelineModel.getKeyChart();
@@ -53,7 +52,16 @@ const CovidChart = ({
   };
   console.log(currentChart.annotation);
   useEffect(() => {
-    updateScales();
+    async function fetchData() {
+      let { default: cases } = await import("../models/cases");
+      console.log({ cases });
+      timelineModel.setCases(cases);
+      currentChart.setCases(cases);
+      timelineModel.setDate("2020-12-02");
+      updateScales();
+      // ...
+    }
+    fetchData();
     window.addEventListener("resize", updateScales);
     return () => {
       window.removeEventListener("resize", updateScales);

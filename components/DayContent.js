@@ -52,7 +52,6 @@ const DayContent = ({
 }) => {
   const contentRef = useRef();
   useEffect(() => {
-    console.log(timelineModel.currentDate, date);
     if (timelineModel.currentDate === date) {
       const content = contentRef.current.getElementsByTagName("p")[0];
       console.log({ content });

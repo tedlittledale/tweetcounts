@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
+import dynamic from "next/dynamic";
 import styled from "styled-components";
 import { withProp } from "styled-tools";
 import Link from "next/link";
 import { compose } from "ramda";
 import { observer } from "mobx-react-lite";
 import { withPaths } from "../utils/store";
-import CovidChart from "./CovidChart";
+const CovidChart = dynamic(() => import("./CovidChart"), { ssr: false });
 import TimelineDates from "./TimelineDates";
 import Header from "./Header";
 import { media } from "../utils/media";

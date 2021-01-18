@@ -33,6 +33,7 @@ const highlightLabels = [
 ];
 
 const Points = ({ keyCharts, currentPoints, isMobile, date }) => {
+  console.log({ keyCharts, currentPoints });
   const springs = useSprings(
     currentPoints.length,
     currentPoints.map(({ x, tier, label }, idx) => ({
@@ -57,26 +58,32 @@ const Points = ({ keyCharts, currentPoints, isMobile, date }) => {
               cy={y}
               r="4"
             /> */}
-            {keyCharts.map((chartPoints, idx2) => (
-              <animated.line
-                strokeOpacity={
-                  highlightPoints[date] &&
-                  highlightPoints[date][currentPoints[idx].label]
-                    ? 1
-                    : highlightPoints[date]
-                    ? 0.2
-                    : 1
-                }
-                x1={x}
-                y1={
-                  idx2 === 0 ? currentPoints[idx].y : keyCharts[idx2 - 1][idx].y
-                }
-                x2={x}
-                y2={chartPoints[idx].y}
-                strokeWidth={isMobile ? 2 : 4}
-                stroke={convertHexToRGBA(colors[chartPoints[idx].tier - 1], 80)}
-              />
-            ))}
+            {keyCharts[0].length &&
+              keyCharts.map((chartPoints, idx2) => (
+                <animated.line
+                  strokeOpacity={
+                    highlightPoints[date] &&
+                    highlightPoints[date][currentPoints[idx].label]
+                      ? 1
+                      : highlightPoints[date]
+                      ? 0.2
+                      : 1
+                  }
+                  x1={x}
+                  y1={
+                    idx2 === 0
+                      ? currentPoints[idx].y
+                      : keyCharts[idx2 - 1][idx].y
+                  }
+                  x2={x}
+                  y2={chartPoints[idx].y}
+                  strokeWidth={isMobile ? 2 : 4}
+                  stroke={convertHexToRGBA(
+                    colors[chartPoints[idx].tier - 1],
+                    80
+                  )}
+                />
+              ))}
           </g>
         ))}
       </PointsWrap>

@@ -46,7 +46,7 @@ const Legend = ({ tiers, width, keyDateLegend, isMobile }) => {
       <div></div>
       <>
         {tierArray.map((tier, idx) => (
-          <div>
+          <div key={idx}>
             <p>{idx < 4 ? `Tier ${idx + 1}` : "Lockdown"}</p>
             <span style={{ background: convertHexToRGBA(colors[idx], 100) }} />
           </div>

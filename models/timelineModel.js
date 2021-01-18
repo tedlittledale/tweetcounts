@@ -33,6 +33,9 @@ export const TimelineModel = types
         self.keyDatesArray.set(date, chartData);
       });
     },
+    setCases: (cases) => {
+      self.allData = cases;
+    },
     getKeyChart() {
       const past = filter(
         (keyDate) =>
@@ -73,6 +76,7 @@ export const TimelineModel = types
         ({ day }) => day === currentDate,
         self.allData
       );
+      console.log({ currentChartData });
       self.currentChart.setData(currentChartData.map((data) => data.toJSON()));
     }
   }))

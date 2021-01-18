@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { types, applySnapshot } from "mobx-state-tree";
 import { TimelineModel } from "./models/timelineModel";
-import cases from "./models/cases";
 
 let store;
 
@@ -26,7 +25,7 @@ export function initializeStore(snapshot = null) {
     store ??
     Store.create({
       timelineModel: {
-        allData: cases,
+        allData: [],
         keyDates: [
           "2021-01-05",
           "2020-12-31",
@@ -36,7 +35,7 @@ export function initializeStore(snapshot = null) {
           "2020-12-16",
           "2020-12-02"
         ],
-        currentChart: { data: [], allData: cases }
+        currentChart: { data: [], allData: [] }
       }
     });
 

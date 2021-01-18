@@ -61,7 +61,7 @@ const DatesContainer = () => {
         <ul>
           <li>
             <p>
-              Several of the tier 3 areas are starting to show a decline in
+              Several of the Tier Three areas are starting to show a decline in
               cases.
             </p>
           </li>
@@ -119,8 +119,8 @@ const DatesContainer = () => {
           <li>
             <h3>Tiers updated:</h3>
             <p>
-              London, and parts of Essex and Hertfordshire, are placed into tier
-              three of England's COVID tier system following an increase in case
+              London, and parts of Essex and Hertfordshire, are placed into Tier
+              Three of England's COVID tier system following an increase in case
               numbers in those areas
             </p>
           </li>
@@ -141,9 +141,9 @@ const DatesContainer = () => {
           <li>
             <h3>Tiers updated:</h3>
             <p>
-              Several more south eastern areas move from tier 2 to tier 3.
-              Bristol and North Somerset move from tier 3 to tier 2.
-              Herefordshire will be moved from tier 2 to tier 1.
+              Several more south eastern areas move from Tier Two to Tier Three.
+              Bristol and North Somerset move from Tier three to Tier two.
+              Herefordshire will be moved from Tier Two to Tier One.
             </p>
           </li>
         </ul>
@@ -153,7 +153,7 @@ const DatesContainer = () => {
           <li>
             <h3>Tiers updated:</h3>
             <p>
-              London, South East and East of England go into new Tier 4
+              London, South East and East of England go into new Tier Four
               restrictions
             </p>
           </li>
@@ -163,8 +163,8 @@ const DatesContainer = () => {
         <ul>
           <li>
             <p>
-              All but two of the areas now in tier 4 were initially placed in
-              tier 2 when lockdown ended.{" "}
+              All but two of the areas now in Tier Four were initially placed in
+              Tier 2 when lockdown ended.
             </p>
           </li>
         </ul>
@@ -174,8 +174,8 @@ const DatesContainer = () => {
           <li>
             <p>
               Conversely, all but two of the areas which were initially placed
-              in tier 3 (the highest when lockdown ended) at this point remained
-              in tier 3 or lower
+              in Tier Three (the highest when lockdown ended) at this point
+              remained in Tier Three or lower.
             </p>
           </li>
         </ul>
@@ -229,8 +229,8 @@ const DatesContainer = () => {
         <ul>
           <li>
             <p>
-              43 areas are moved into tier 4 restrictions, meanaing a total of
-              44 million people in England are now living under the toughest
+              43 areas are moved into Tier Four restrictions, meanaing a total
+              of 44 million people in England are now living under the toughest
               measures
             </p>
           </li>

@@ -84,8 +84,8 @@ export const CovidChart = types
       const paddingXLeft = isMobile ? 30 : 60;
       const paddingRight = 50;
       const marginX = isMobile ? 10 : 20; //right margin
-      const marginY = isMobile ? 30 : 0;
-      const marginTop = isMobile ? 30 : 0;
+      const marginY = isMobile ? 30 : 30;
+      const marginTop = isMobile ? 30 : 30;
       const chartHeight = height
         ? Math.round(isMobile ? height / 2 : 500)
         : self.height;

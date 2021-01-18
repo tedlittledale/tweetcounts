@@ -1,4 +1,4 @@
-import {css} from 'styled-components'
+import { css } from "styled-components";
 
 // -------------------------------------------------------------
 // Base.
@@ -14,7 +14,7 @@ const boxModel = css`
   *::after {
     box-sizing: inherit;
   }
-`
+`;
 
 const typography = css`
   html {
@@ -26,7 +26,7 @@ const typography = css`
   body {
     font-size: var(--typographic-size);
   }
-`
+`;
 
 const fullBodyViewportHeight = css`
   body {
@@ -34,7 +34,7 @@ const fullBodyViewportHeight = css`
     min-height: 100vh;
     margin: 0;
   }
-`
+`;
 
 const colors = css`
   html {
@@ -42,18 +42,18 @@ const colors = css`
     background: var(--color-page-overscroll);
   }
   body {
-    background: var(--color-page-background);
+    background: var(--color-selection-background);
   }
 
   ::selection {
     color: var(--color-selection-foreground);
     background: var(--color-selection-background);
   }
-`
+`;
 
 export default css`
   ${boxModel}
   ${typography}
   ${fullBodyViewportHeight}
   ${colors}
-`
+`;

@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import Img from './img';
-import { media } from '../utils/media';
+import React from "react";
+import styled from "styled-components";
+import Img from "./img";
+import { media } from "../utils/media";
 
-import Loading from './Loading';
+import Loading from "./Loading";
 
-const KeyWrap = styled('div')`
+const KeyWrap = styled("div")`
   display: grid;
   justify-items: center;
   align-items: center;
@@ -30,11 +30,10 @@ const KeyWrap = styled('div')`
     border-radius: 5px;
     box-shadow: 0 5px 15px hsla(0, 0%, 0%, 0.2);
     box-sizing: border-box;
-    background: white;
   }
 `;
 
-const Items = styled('div')`
+const Items = styled("div")`
   display: grid;
   grid: 1fr 1fr 1fr / repeat(5, 1fr);
   grid-auto-flow: column;
@@ -45,7 +44,7 @@ const Items = styled('div')`
   ${media.phone`font-size:14px;`}
 `;
 
-const Item = styled('div')`
+const Item = styled("div")`
   display: grid;
   grid: 1fr 30px / 1fr;
   justify-items: center;
@@ -56,21 +55,21 @@ const Item = styled('div')`
 `;
 
 const animalMap = {
-  Human: 'human2',
-  Cat: 'cat-butt',
-  'Small dog': 'pug',
-  'Medium dog': 'corgi',
-  'Large dog': 'german-shepherd',
-  Hamster: 'cute-hamster',
-  Chicken: 'chicken',
-  Monkey: 'monkey',
-  Horse: 'horse',
-  Cow: 'cow',
-  Pig: 'pig',
-  Rabbit: 'rabbit',
-  Elephant: 'elephant',
-  Giraffe: 'giraffe',
-  'Large whale': 'whale'
+  Human: "human2",
+  Cat: "cat-butt",
+  "Small dog": "pug",
+  "Medium dog": "corgi",
+  "Large dog": "german-shepherd",
+  Hamster: "cute-hamster",
+  Chicken: "chicken",
+  Monkey: "monkey",
+  Horse: "horse",
+  Cow: "cow",
+  Pig: "pig",
+  Rabbit: "rabbit",
+  Elephant: "elephant",
+  Giraffe: "giraffe",
+  "Large whale": "whale"
 };
 
 const Key = ({ animals = [] }) => {

@@ -8,12 +8,12 @@ import { css } from "styled-components";
 // -------------------------------------------------------------
 
 const lightTheme = css`
-  --color-page-content: hsl(0, 0%, 5%);
+  --color-page-content: hsl(209, 61%, 16%);
   --color-page-content-faded: hsl(0, 0%, 50%);
-  --color-page-background: hsl(0, 0%, 100%);
   --color-page-overscroll: hsl(0, 0%, 100%);
   --color-selection-foreground: hsl(0, 0%, 100%);
-  --color-selection-background: var(--color-accent);
+  --color-selection-background: hsl(210, 36%, 96%);
+  --color-faint: hsl(212, 33%, 89%);
 `;
 
 const darkTheme = css`

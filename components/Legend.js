@@ -22,7 +22,7 @@ const LegendWrap = styled("svg")`
   left: 0;
 
   text {
-    color: black;
+    color: var(--color-page-content);
     font-size: 12px;
     border: 1px solid grey;
   }
@@ -30,12 +30,12 @@ const LegendWrap = styled("svg")`
 
 const Legend = ({ tiers, width, keyDateLegend, isMobile }) => {
   const margin = isMobile ? width - 220 : width - 250;
-  const marginY = isMobile ? 30 : 30;
+  const marginY = 10;
   console.log({ isMobile });
   return (
     <LegendWrap>
       <filter x="0" y="0" width="1" height="1" id="solid">
-        <feFlood floodColor="white" result="bg" />
+        <feFlood floodColor="hsl(210, 36%, 96%)" result="bg" />
         <feMerge>
           <feMergeNode in="bg" />
           <feMergeNode in="SourceGraphic" />
@@ -48,9 +48,9 @@ const Legend = ({ tiers, width, keyDateLegend, isMobile }) => {
             <>
               <text
                 filter="url(#solid)"
-                y={marginY + idx * 20}
+                y={marginY}
                 // x={width - margin - 10}
-                x={width - margin - 10}
+                x={100 + idx * 61}
                 textAnchor="end"
                 alignmentBaseline="middle"
               >
@@ -59,8 +59,8 @@ const Legend = ({ tiers, width, keyDateLegend, isMobile }) => {
               <circle
                 fill={convertHexToRGBA(colors[idx], 100)}
                 strokeWidth={1}
-                cx={width - margin}
-                cy={marginY + idx * 20}
+                cx={107 + idx * 61}
+                cy={marginY}
                 r="4"
               />
             </>
@@ -69,26 +69,26 @@ const Legend = ({ tiers, width, keyDateLegend, isMobile }) => {
           <>
             <text
               filter="url(#solid)"
-              y={marginY + tiers[tiers.length - 1] * 20}
-              x={width - margin - 10}
+              y={marginY}
+              x={140 + tiers.length * 61}
               textAnchor="end"
               alignmentBaseline="middle"
             >
-              Previous tiers and cases
+              Previous tiers
             </text>
             <line
-              x1={width - margin}
-              y1={marginY - 10 + tiers[tiers.length - 1] * 20}
-              x2={width - margin}
-              y2={marginY + 10 + tiers[tiers.length - 1] * 20}
+              x1={147 + tiers.length * 61}
+              y1={marginY - 10}
+              x2={147 + tiers.length * 61}
+              y2={marginY + 10}
               strokeWidth={4}
               stroke={convertHexToRGBA(colors[0], 90)}
             />
             <line
-              x1={width - margin}
-              y1={marginY + 10 + tiers[tiers.length - 1] * 20}
-              x2={width - margin}
-              y2={marginY + 30 + tiers[tiers.length - 1] * 20}
+              x1={147 + tiers.length * 61}
+              y1={marginY + 10}
+              x2={147 + tiers.length * 61}
+              y2={marginY + 30}
               strokeWidth={4}
               stroke={convertHexToRGBA(colors[1], 90)}
             />

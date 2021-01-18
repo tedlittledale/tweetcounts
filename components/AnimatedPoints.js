@@ -16,14 +16,13 @@ const PointsWrap = styled("svg")`
   width: 100%;
   top: 0;
   left: 0;
-  line {
-    stroke: #d8d8d8;
-  }
+
   text {
     font-size: 12px;
+    fill: var(--color-page-content);
   }
   line {
-    stroke: black;
+    stroke: var(--color-page-content);
   }
   circle {
     cursor: pointer;

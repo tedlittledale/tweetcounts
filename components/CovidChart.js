@@ -12,10 +12,13 @@ import { media } from "../utils/media";
 
 const ChartWrap = styled("div")`
   width: 100%;
+  padding-top: 50px;
+  ${media.phablet` padding-top: 50px;`}
+  ${media.phone` padding-top: 50px;`}
   position: relative;
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background: var(--color-page-background);
+  background: var(--color-selection-background);
   > div {
     max-width: 960px;
     ${media.phablet`width: 100%;`}
@@ -26,7 +29,6 @@ const ChartWrap = styled("div")`
     )}
     border-radius: 5px;
     box-sizing: border-box;
-    background: white;
     margin: 0 auto;
     > div {
       position: relative;
@@ -47,11 +49,20 @@ const Credit = styled.div`
 const CovidChart = ({ currentChart, currentDate, timelineModel }) => {
   const keyCharts = timelineModel.getKeyChart();
   const targetRef = useRef();
-  useEffect(() => {
+  const updateScales = () => {
     const { width } = targetRef.current.getBoundingClientRect();
+
     const height = window.innerHeight;
     currentChart && currentChart.setUpScales({ width, height });
-  }, [currentDate]);
+  };
+  useEffect(() => {
+    updateScales();
+    window.addEventListener("resize", updateScales);
+    return () => {
+      window.removeEventListener("resize", updateScales);
+    };
+  }, []);
+
   const currentPoints =
     currentChart.state === "ready" ? currentChart.points() : [];
   return (

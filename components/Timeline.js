@@ -18,7 +18,7 @@ const Wrapper = styled("div")`
 
 const Grid = styled("div")`
   display: grid;
-  grid: 1fr/400px 1fr;
+  grid: 1fr/280px 1fr;
   ${withProp(
     "chartHeight",
     (chartHeight) => `margin-top: -${chartHeight ? chartHeight : 0}px`
@@ -30,7 +30,7 @@ const Grid = styled("div")`
 
 const ChartWrapper = styled("div")`
   display: grid;
-  grid: 1fr/400px 1fr;
+  grid: 1fr/280px 1fr;
   ${media.phablet`grid: 1fr/1fr;`}
   ${media.phone`grid: 1fr/1fr;`}
   position: sticky;

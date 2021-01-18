@@ -17,7 +17,7 @@ const PointsWrap = styled("svg")`
   top: 0;
   left: 0;
   text {
-    color: black;
+    color: var(--color-page-content);
     font-size: 12px;
   }
 `;

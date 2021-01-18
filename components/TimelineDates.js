@@ -7,6 +7,7 @@ const DatesWrap = styled.div`
   position: relative;
   z-index: 100000;
   margin: 0 20px;
+  border-right: 1px solid var(--color-faint);
   ${media.phablet`padding-top:300px`}
   ${media.phone`padding-top:300px`}
 `;

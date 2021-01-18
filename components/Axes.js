@@ -8,7 +8,7 @@ const AxesWrap = styled("div")`
   position: relative;
   height: 520px;
   line {
-    stroke: #f2e5da;
+    stroke: var(--color-faint);
   }
 `;
 
@@ -22,7 +22,7 @@ const YAxis = styled.svg`
   /* display: grid;
   grid: repeat(10, 1fr) / 1fr; */
   text {
-    fill: #1a1817;
+    fill: var(--color-page-content);
     font-size: 12px;
     user-select: none;
   }
@@ -74,17 +74,15 @@ const Axes = ({ yTicks, xTicks, yLabel, xLabel, height, isMobile }) => {
         ))}
       </YAxis>
       <XAxis>
-        <text x="50%" y={isMobile ? height : 530} textAnchor="middle" dy="1em">
+        <text
+          x="50%"
+          y={(isMobile ? height : 510) - 52}
+          textAnchor="middle"
+          dy="1em"
+        >
           {xLabel}
         </text>
-        <svg
-          x={isMobile ? "70%" : "58%"}
-          y={(isMobile ? height : 530) - 32}
-          width="24"
-          height="24"
-        >
-          <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z" />
-        </svg>
+
         {/* {xTicks.map(({ label, x }, i) => (
           <g key={i}>
             <line x1={x} x2={x} y1={440} y2={450} />

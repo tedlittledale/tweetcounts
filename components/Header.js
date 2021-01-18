@@ -9,6 +9,7 @@ const Wrapper = styled("header")`
   grid: 1fr / 1fr;
   align-items: center;
   justify-items: center;
+  border-bottom: 1px solid var(--color-faint);
   div {
     width: 70%;
   }

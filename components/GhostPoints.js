@@ -12,7 +12,7 @@ const PointsWrap = styled("svg")`
   grid: 1fr / 1fr;
   justify-items: center;
   position: absolute;
-  height: 600px;
+  height: ${withProp("height", (height) => height)}px;
   width: 100%;
   top: 0;
   left: 0;
@@ -32,7 +32,7 @@ const highlightLabels = [
   "Cornwall"
 ];
 
-const Points = ({ keyCharts, currentPoints, isMobile, date }) => {
+const Points = ({ keyCharts, currentPoints, isMobile, date, height }) => {
   console.log({ keyCharts, currentPoints });
   const springs = useSprings(
     currentPoints.length,
@@ -46,7 +46,7 @@ const Points = ({ keyCharts, currentPoints, isMobile, date }) => {
 
   return (
     <>
-      <PointsWrap>
+      <PointsWrap height={height}>
         {/* <polyline fill="none" stroke="#ccc" strokeWidth="2" points={lines} /> */}
         {springs.map(({ x, y, y2 }, idx) => (
           <g key={idx}>

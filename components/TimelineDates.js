@@ -7,7 +7,8 @@ const DatesWrap = styled.div`
   position: relative;
   z-index: 100000;
   margin: 0;
-  border-right: 1px solid var(--color-faint);
+
+  border-bottom: 1px solid var(--color-faint);
   ${media.phablet`padding-top:300px`}
   ${media.phone`padding-top:300px`}
 `;
@@ -32,7 +33,7 @@ const DatesContainer = () => {
             <p>
               England's second lockdown ends at 12.01am, and the second tier
               system is adopted. Gyms, hairdressers and non-essential shops are
-              allowed to reopen
+              allowed to reopen.
             </p>
           </li>
         </ul>
@@ -42,14 +43,19 @@ const DatesContainer = () => {
           <li>
             <p>
               With a 7 day rolling average of 519 cases per 100k people, Medway
-              has the highest case rate in England
+              has the highest case rate in England.
             </p>
           </li>
         </ul>
       </Day>
       <Day date={`2020-12-04`}>
         <ul>
-          <li></li>
+          <li>
+            <p>
+              Within days it is clear that case rates in Tier Two areas are
+              rising faster than in Tier Three areas.
+            </p>
+          </li>
         </ul>
       </Day>
       <Day date={`2020-12-05`}>
@@ -61,8 +67,8 @@ const DatesContainer = () => {
         <ul>
           <li>
             <p>
-              Several of the Tier Three areas are starting to show a decline in
-              cases.
+              While case rates are starting to fall in Tier 3 areas, cases are
+              continuing to rise in Tier 2 areas.
             </p>
           </li>
         </ul>
@@ -81,12 +87,19 @@ const DatesContainer = () => {
       </Day>
       <Day date={`2020-12-09`}>
         <ul>
-          <li></li>
+          <li>
+            <p>Cases continue to rise accross all Tier Two areas.</p>
+          </li>
         </ul>
       </Day>
       <Day date={`2020-12-10`}>
         <ul>
-          <li></li>
+          <li>
+            <p>
+              Meanwhile, the majority of areas in Tier Three see their case
+              rates decrease or stay the same.
+            </p>
+          </li>
         </ul>
       </Day>
       <Day date={`2020-12-11`}>
@@ -101,7 +114,12 @@ const DatesContainer = () => {
       </Day>
       <Day date={`2020-12-13`}>
         <ul>
-          <li></li>
+          <li>
+            <p>
+              The majority of Tier Two areas now have a higher case rate than
+              the median Tier Three case rate.
+            </p>
+          </li>
         </ul>
       </Day>
       <Day date={`2020-12-14`}>
@@ -120,15 +138,21 @@ const DatesContainer = () => {
             <h3>Tiers updated:</h3>
             <p>
               London, and parts of Essex and Hertfordshire, are placed into Tier
-              Three of England's COVID tier system following an increase in case
-              numbers in those areas
+              Three. All of these areas started this period in Tier Two and
+              these regions now make up the majority of the worst affected areas
+              in the country.
             </p>
           </li>
         </ul>
       </Day>
       <Day date={`2020-12-17`}>
         <ul>
-          <li></li>
+          <li>
+            <p>
+              Thirty four of the thirty six areas with the highest case rates
+              were initially placed into Tier Two.
+            </p>
+          </li>
         </ul>
       </Day>
       <Day date={`2020-12-18`}>
@@ -141,9 +165,9 @@ const DatesContainer = () => {
           <li>
             <h3>Tiers updated:</h3>
             <p>
-              Several more south eastern areas move from Tier Two to Tier Three.
-              Bristol and North Somerset move from Tier three to Tier two.
-              Herefordshire will be moved from Tier Two to Tier One.
+              Just three days after the last tier changes several more south
+              eastern areas move from Tier Two into Tier Three, while two areas
+              which began in Tier Three are able to be moved to Tier Two.
             </p>
           </li>
         </ul>
@@ -153,8 +177,8 @@ const DatesContainer = () => {
           <li>
             <h3>Tiers updated:</h3>
             <p>
-              London, South East and East of England go into new Tier Four
-              restrictions
+              Areas within London, the South East and the East of England go
+              into new strickter Tier Four restrictions.
             </p>
           </li>
         </ul>
@@ -163,8 +187,8 @@ const DatesContainer = () => {
         <ul>
           <li>
             <p>
-              All but two of the areas now in Tier Four were initially placed in
-              Tier 2 when lockdown ended.
+              All but two of the areas now in Tier Four were initially placed
+              into Tier Two when lockdown ended.
             </p>
           </li>
         </ul>
@@ -174,8 +198,8 @@ const DatesContainer = () => {
           <li>
             <p>
               Conversely, all but two of the areas which were initially placed
-              in Tier Three (the highest when lockdown ended) at this point
-              remained in Tier Three or lower.
+              in Tier Three (the highest when lockdown ended) have managed to
+              remain in Tier Three or lower.
             </p>
           </li>
         </ul>
@@ -187,7 +211,12 @@ const DatesContainer = () => {
       </Day>
       <Day date={`2020-12-24`}>
         <ul>
-          <li></li>
+          <li>
+            <p>
+              One of the few areas in Tier Four to begin trending downwards is
+              Medway, which was never placed into Tier Two.
+            </p>
+          </li>
         </ul>
       </Day>
       <Day date={`2020-12-25`}>
@@ -199,7 +228,7 @@ const DatesContainer = () => {
         <ul>
           <li>
             <p>
-              Tier four restrictions are extended in England after rules are
+              Several more areas are moved into higher tiers after rules are
               briefly relaxed for Christmas Day.
             </p>
           </li>
@@ -217,7 +246,12 @@ const DatesContainer = () => {
       </Day>
       <Day date={`2020-12-29`}>
         <ul>
-          <li></li>
+          <li>
+            <p>
+              By the 29th December cases are beginnng to rise rapidly accross
+              all regions.
+            </p>
+          </li>
         </ul>
       </Day>
       <Day date={`2020-12-30`}>
@@ -229,9 +263,9 @@ const DatesContainer = () => {
         <ul>
           <li>
             <p>
-              43 areas are moved into Tier Four restrictions, meanaing a total
-              of 44 million people in England are now living under the toughest
-              measures
+              An additional 43 areas are moved into Tier Four restrictions,
+              meanaing a total of 44 million people in England are now living
+              under the toughest measures
             </p>
           </li>
         </ul>

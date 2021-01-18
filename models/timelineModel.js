@@ -35,8 +35,16 @@ export const TimelineModel = types
     },
     setCases: (cases) => {
       self.allData = cases;
+      self.keyDates.map((date) => {
+        const chartData = filter(
+          ({ day }) => day === date,
+          self.allData.toJSON()
+        );
+        self.keyDatesArray.set(date, chartData);
+      });
     },
     getKeyChart() {
+      console.log(self.keyDates.toJSON(), self.currentDate);
       const past = filter(
         (keyDate) =>
           differenceInDays(
@@ -45,6 +53,7 @@ export const TimelineModel = types
           ) >= 0,
         self.keyDates
       );
+      console.log({ past });
       return past ? past.map((date) => self.keyDatesArray.get(date)) : [];
     },
     getKeyChartLegend() {

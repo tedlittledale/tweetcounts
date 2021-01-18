@@ -14,6 +14,8 @@ import { media } from "../utils/media";
 const ChartWrap = styled("div")`
   width: 100%;
   padding-top: 50px;
+  padding-left: 20px;
+  border-left: 1px solid var(--color-faint);
   ${media.phablet` padding-top: 50px;`}
   ${media.phone` padding-top: 50px;`}
   position: relative;
@@ -21,7 +23,7 @@ const ChartWrap = styled("div")`
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background: var(--color-selection-background);
   > div {
-    max-width: 960px;
+    max-width: 100%;
     ${media.phablet`width: 100%;`}
     ${media.phone`width: 100%;`}
     ${withProp(
@@ -43,6 +45,7 @@ const CovidChart = ({
   timelineModel
 }) => {
   const keyCharts = timelineModel.getKeyChart();
+  console.log({ keyCharts });
   const targetRef = useRef();
   const updateScales = () => {
     const { width } = targetRef.current.getBoundingClientRect();
@@ -81,7 +84,7 @@ const CovidChart = ({
                 xTicks={currentChart.xAxis()}
                 xLabel="Rank of case rate"
                 yLabel="New cases (7 day rolling average)"
-                height={currentChart.height}
+                height={height}
                 isMobile={currentChart.isMobile}
               ></Axes>
               <Legend
@@ -93,6 +96,7 @@ const CovidChart = ({
               />
               {keyCharts && (
                 <GhostPoints
+                  height={height}
                   date={timelineModel.currentDate}
                   currentPoints={currentPoints}
                   isMobile={currentChart.isMobile}
@@ -102,6 +106,7 @@ const CovidChart = ({
                 ></GhostPoints>
               )}
               <AnimatedPoints
+                height={height}
                 date={timelineModel.currentDate}
                 total={currentChart.englandTotal}
                 isMobile={currentChart.isMobile}

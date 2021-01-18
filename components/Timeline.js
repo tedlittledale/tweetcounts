@@ -9,6 +9,7 @@ import { withPaths } from "../utils/store";
 const CovidChart = dynamic(() => import("./CovidChart"), { ssr: false });
 import TimelineDates from "./TimelineDates";
 import Header from "./Header";
+import Sources from "./Sources";
 import { media } from "../utils/media";
 
 import RootContext from "./RootContext";
@@ -22,9 +23,9 @@ const Grid = styled("div")`
   grid: 1fr/280px 1fr;
   ${withProp(
     "chartHeight",
-    (chartHeight) => `margin-top: -${chartHeight ? chartHeight : 0}px`
+    (chartHeight) => `margin-top: -${chartHeight}px;
+      padding-bottom: ${chartHeight - 300}px;`
   )}
-  padding-bottom: 320px;
   ${media.phablet`grid: 1fr/1fr;`}
   ${media.phone`grid: 1fr/1fr;`}
 `;
@@ -37,7 +38,7 @@ const ChartWrapper = styled("div")`
   position: sticky;
   z-index: 10000;
   top: 0;
-  left: 20px;
+  left: 40px;
   overflow: visible;
   z-index: 1000;
   ${media.phablet`z-index: 1000000;`}
@@ -49,13 +50,7 @@ const ChartWrapper = styled("div")`
   )}
 `;
 
-const Dates = styled.div`
-  p {
-    height: 250px;
-  }
-`;
-
-const TimeLine = (currentChart) => {
+const TimeLine = ({ currentChart }) => {
   const rootRef = useRef();
   return (
     <Wrapper className="wrapper" ref={rootRef}>
@@ -72,7 +67,7 @@ const TimeLine = (currentChart) => {
           </Grid>
         </div>
 
-        <div style={{ height: "300px" }}></div>
+        <Sources />
       </RootContext.Provider>
     </Wrapper>
   );

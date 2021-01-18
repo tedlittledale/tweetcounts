@@ -159,6 +159,20 @@ export const CovidChart = types
       );
     },
     points() {
+      const median = (arr) => {
+        const mid = Math.floor(arr.length / 2),
+          nums = [...arr].sort((a, b) => a - b);
+        return arr.length % 2 !== 0
+          ? nums[mid]
+          : (nums[mid - 1] + nums[mid]) / 2;
+      };
+      const tier3 = [];
+      self.data.map(({ cases_07da, areaName, tier, rank }, idx) => {
+        if (tier === 3) {
+          tier3.push(cases_07da);
+        }
+      });
+      console.log(median(tier3));
       return self.data.map(({ cases_07da, areaName, tier, rank }, idx) => ({
         y: self.yScale(cases_07da),
         x: self.xScale(rank),

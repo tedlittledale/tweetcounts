@@ -12,7 +12,7 @@ const PointsWrap = styled("svg")`
   grid: 1fr / 1fr;
   justify-items: center;
   position: absolute;
-  height: 600px;
+  height: ${withProp("height", (height) => height)}px;
   width: 100%;
   top: 0;
   left: 0;
@@ -42,7 +42,7 @@ const highlightLabels = [
 
 const temp = {};
 
-const Points = ({ points = [], total, isMobile, date }) => {
+const Points = ({ points = [], total, isMobile, date, height }) => {
   const [labels, setLabels] = useState(highlightLabels);
   const springs = useSprings(
     points.length,
@@ -64,7 +64,7 @@ const Points = ({ points = [], total, isMobile, date }) => {
 
   return (
     <>
-      <PointsWrap>
+      <PointsWrap height={height}>
         <defs>
           <filter x="0" y="0" width="1" height="1" id="solidwhite">
             <feFlood floodColor="hsl(210, 36%, 96%)" result="bg" />

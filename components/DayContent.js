@@ -1,19 +1,25 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { withProp } from "styled-tools";
 import { compose } from "ramda";
 import { observer } from "mobx-react-lite";
 import { withPaths } from "../utils/store";
 
-const Wrapper = styled("header")`
-  padding: 0 20px;
-  min-height: 200px;
-  border-radius: 5px;
+const Wrapper = styled("div")`
+  padding: 0 0 0 30px;
+  border-bottom: 1px solid var(--color-faint);
+
+  border-top: 1px solid var(--color-faint);
+  height: 100px;
+  border-radius: 0;
+  display: grid;
+  align-content: center;
+
   p {
     box-sizing: border-box;
     margin: 0;
 
-    height: 200px;
+    display: none;
   }
   h2 {
     font-size: 30px;
@@ -23,6 +29,7 @@ const Wrapper = styled("header")`
   transition: color 500ms ease;
   &.currentDate {
     color: var(--color-page-content);
+    background: var(--color-faint);
     ${withProp(
       "update",
       (update) =>
@@ -32,20 +39,39 @@ const Wrapper = styled("header")`
         h3,li{
           color: var(--color-font-highlight);
         }`
-    )}
+    )};
   }
 `;
 
-const DayContent = ({ children, date, timelineModel, update }) => {
+const DayContent = ({
+  children,
+  date,
+  timelineModel,
+  currentChart,
+  update
+}) => {
+  const contentRef = useRef();
+  useEffect(() => {
+    console.log(timelineModel.currentDate, date);
+    if (timelineModel.currentDate === date) {
+      const content = contentRef.current.getElementsByTagName("p")[0];
+      console.log({ content });
+      currentChart.setAnnotation(content ? content.innerHTML : null);
+    }
+  }, [timelineModel.currentDate]);
   return (
     <Wrapper
       className="wrapper"
       update={update}
       className={date === timelineModel.currentDate ? `currentDate` : ``}
+      ref={contentRef}
     >
       {children}
     </Wrapper>
   );
 };
 
-export default compose(withPaths(["timelineModel"]), observer)(DayContent);
+export default compose(
+  withPaths(["timelineModel", "timelineModel.currentChart"]),
+  observer
+)(DayContent);

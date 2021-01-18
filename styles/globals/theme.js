@@ -14,6 +14,7 @@ const lightTheme = css`
   --color-selection-foreground: hsl(0, 0%, 100%);
   --color-selection-background: hsl(210, 36%, 96%);
   --color-faint: hsl(212, 33%, 89%);
+  --color-faint-transparent: hsla(212, 33%, 89%, 0.5);
 `;
 
 const darkTheme = css`

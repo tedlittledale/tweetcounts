@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { withProp } from "styled-tools";
 
 const AxesWrap = styled("div")`
   display: grid;
   grid: 1fr / 1fr;
   justify-items: center;
   position: relative;
-  height: 520px;
+  height: ${withProp("height", (height) => height)}px;
   line {
     stroke: var(--color-faint);
   }
@@ -53,7 +54,7 @@ const XAxis = styled.svg`
 
 const Axes = ({ yTicks, xTicks, yLabel, xLabel, height, isMobile }) => {
   return (
-    <AxesWrap>
+    <AxesWrap height={height}>
       <YAxis>
         <text
           x={-(height / 2)}
@@ -76,7 +77,7 @@ const Axes = ({ yTicks, xTicks, yLabel, xLabel, height, isMobile }) => {
       <XAxis>
         <text
           x="50%"
-          y={(isMobile ? height : 510) - 52}
+          y={(isMobile ? height : height) - 22}
           textAnchor="middle"
           dy="1em"
         >

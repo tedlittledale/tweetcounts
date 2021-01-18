@@ -7,6 +7,7 @@ import { injectPick, withPaths } from "../utils/store";
 import Axes from "./Axes";
 import Legend from "./Legend";
 import GhostPoints from "./GhostPoints";
+import Annotation from "./Annotation";
 import AnimatedPoints from "./AnimatedPoints";
 import { media } from "../utils/media";
 
@@ -36,17 +37,12 @@ const ChartWrap = styled("div")`
   }
 `;
 
-const Credit = styled.div`
-  padding: 20px;
-  text-align: left;
-  a {
-    text-decoration: underline;
-    color: hsl(205, 82%, 33%);
-  }
-  margin-bottom: 30px;
-`;
-
-const CovidChart = ({ currentChart, currentDate, timelineModel }) => {
+const CovidChart = ({
+  currentChart,
+  currentChart: { annotation, width, height, state },
+  currentDate,
+  timelineModel
+}) => {
   const keyCharts = timelineModel.getKeyChart();
   const targetRef = useRef();
   const updateScales = () => {
@@ -55,6 +51,7 @@ const CovidChart = ({ currentChart, currentDate, timelineModel }) => {
     const height = window.innerHeight;
     currentChart && currentChart.setUpScales({ width, height });
   };
+  console.log(currentChart.annotation);
   useEffect(() => {
     updateScales();
     window.addEventListener("resize", updateScales);
@@ -63,14 +60,14 @@ const CovidChart = ({ currentChart, currentDate, timelineModel }) => {
     };
   }, []);
 
-  const currentPoints =
-    currentChart.state === "ready" ? currentChart.points() : [];
+  const currentPoints = state === "ready" ? currentChart.points() : [];
   return (
     <>
-      <ChartWrap chartHeight={currentChart.height}>
+      <ChartWrap chartHeight={height}>
         <div ref={targetRef}>
-          {currentChart && currentChart.state === "ready" ? (
+          {currentChart && state === "ready" ? (
             <div>
+              {annotation && <Annotation content={annotation} width={width} />}
               <Axes
                 yTicks={currentChart.yAxis()}
                 xTicks={currentChart.xAxis()}

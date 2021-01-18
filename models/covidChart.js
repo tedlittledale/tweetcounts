@@ -29,11 +29,15 @@ export const CovidChart = types
     isMobile: types.maybeNull(types.boolean),
     tiers: types.maybeNull(types.array(types.number)),
     englandTotal: types.maybeNull(types.number),
+    annotation: types.maybeNull(types.string),
     state: "init"
   })
   .actions((self) => ({
     setAllData: (allData) => {
       self.allData = allData.toJSON();
+    },
+    setAnnotation: (annotation) => {
+      self.annotation = annotation;
     },
     setData: (data) => {
       const allTiers = [];
@@ -85,9 +89,9 @@ export const CovidChart = types
       const paddingRight = 50;
       const marginX = isMobile ? 10 : 20; //right margin
       const marginY = isMobile ? 30 : 30;
-      const marginTop = isMobile ? 30 : 30;
+      const marginTop = isMobile ? 0 : 0;
       const chartHeight = height
-        ? Math.round(isMobile ? height / 2 : 500)
+        ? Math.round(isMobile ? (height * 2) / 3 : height - 100)
         : self.height;
       self.height = chartHeight;
       self.allData.forEach(({ cases_07da }) => {

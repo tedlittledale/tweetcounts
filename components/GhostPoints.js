@@ -22,13 +22,7 @@ const PointsWrap = styled("svg")`
   }
 `;
 
-const colors = [
-  "#006B3E",
-  "#E9B949",
-  "#FF8C01",
-  "#ED2938",
-  convertHexToRGBA("#ED2938", 60)
-];
+const colors = ["#006B3E", "#E9B949", "#FF8C01", "#ED2938", "#990000"];
 const highlightLabels = [
   "Medway",
   "Camden",

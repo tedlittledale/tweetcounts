@@ -29,13 +29,7 @@ const PointsWrap = styled("svg")`
   }
 `;
 
-const colors = [
-  "#006B3E",
-  "#E9B949",
-  "#FF8C01",
-  "#ED2938",
-  convertHexToRGBA("#000000", 60)
-];
+const colors = ["#006B3E", "#E9B949", "#FF8C01", "#ED2938", "#990000"];
 const highlightLabels = [
   "Oxfordshire"
   // "Camden",
@@ -73,7 +67,7 @@ const Points = ({ points = [], total, isMobile, date }) => {
       <PointsWrap>
         <defs>
           <filter x="0" y="0" width="1" height="1" id="solidwhite">
-            <feFlood floodColor="white" result="bg" />
+            <feFlood floodColor="hsl(210, 36%, 96%)" result="bg" />
             <feMerge>
               <feMergeNode in="bg" />
               <feMergeNode in="SourceGraphic" />

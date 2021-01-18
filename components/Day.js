@@ -2,7 +2,7 @@ import React, { useState, useContext, Children } from "react";
 import styled from "styled-components";
 
 import { format, parse } from "date-fns";
-import { compose } from "ramda";
+import { compose, path } from "ramda";
 import { observer } from "mobx-react-lite";
 import { withPaths } from "../utils/store";
 import useIntersect from "../utils/hooks/useIntersect";
@@ -12,16 +12,19 @@ import { media } from "../utils/media";
 import RootContext from "./RootContext";
 import DayContent from "./DayContent";
 
-const DayWrap = styled.div``;
+const DayWrap = styled.div`
+  > div {
+  }
+`;
 
 const TrackerDiv = styled("div")`
-  margin-top: -130px;
+  margin-top: -100px;
   height: 1px;
   width: 100%;
-  margin-bottom: 150px;
+  margin-bottom: 130px;
 
-  ${media.phablet`margin-bottom: 65vh;margin-top: -60vh;`}
-  ${media.phone`margin-bottom:65vh;margin-top: -60vh;`} /* background: red;
+  ${media.phablet`margin-bottom: 85vh;margin-top: -80vh;`}
+  ${media.phone`margin-bottom:85vh;margin-top: -80vh;`} /* background: red;
   &.green {
     background: green;
   } */
@@ -78,12 +81,16 @@ const DayContainer = ({ date, timelineModel, children, update }) => {
   }
   return (
     <DayWrap className={`date_${date}`}>
-      <TrackerDiv ref={ref}></TrackerDiv>
-      <DayContent date={date} update={update}>
-        <h2>{format(parse(date, "yyyy-MM-dd", new Date()), "do MMM yyyy")}</h2>
-        {children}
-      </DayContent>
-      <TrackerDiv ref={refEnd} className="green"></TrackerDiv>
+      <div>
+        <TrackerDiv ref={ref}></TrackerDiv>
+        <DayContent date={date} update={update}>
+          <h2>
+            {format(parse(date, "yyyy-MM-dd", new Date()), "do MMM yyyy")}
+          </h2>
+          {children}
+        </DayContent>
+        <TrackerDiv ref={refEnd} className="green"></TrackerDiv>
+      </div>
     </DayWrap>
   );
 };

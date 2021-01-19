@@ -16,7 +16,6 @@ const LegendWrap = styled("div")`
   top: 0;
   left: 0;
   background: var(--color-selection-background);
-  padding-left: 30px;
   > div {
     display: grid;
     grid: 1fr / 1fr 8px;

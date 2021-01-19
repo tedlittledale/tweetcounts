@@ -1,6 +1,6 @@
 import React, { useState, useContext, Children } from "react";
 import styled from "styled-components";
-
+import { withProp } from "styled-tools";
 import { format, parse } from "date-fns";
 import { compose, path } from "ramda";
 import { observer } from "mobx-react-lite";
@@ -23,14 +23,23 @@ const TrackerDiv = styled("div")`
   width: 100%;
   margin-bottom: 130px;
 
-  ${media.phablet`margin-bottom: 85vh;margin-top: -80vh;`}
+  ${media.phablet`${withProp(
+    "height",
+    (height) => `margin-bottom: ${height}px;margin-top: -${height}px;`
+  )}`}
   ${media.phone`margin-bottom:85vh;margin-top: -80vh;`} /* background: red;
   &.green {
     background: green;
   } */
 `;
 
-const DayContainer = ({ date, timelineModel, children, update }) => {
+const DayContainer = ({
+  date,
+  timelineModel,
+  currentChart: { height },
+  children,
+  update
+}) => {
   const rootElement = useContext(RootContext);
 
   const prevPosition = usePrevious(
@@ -82,17 +91,20 @@ const DayContainer = ({ date, timelineModel, children, update }) => {
   return (
     <DayWrap className={`date_${date}`}>
       <div>
-        <TrackerDiv ref={ref}></TrackerDiv>
+        <TrackerDiv height={height} ref={ref}></TrackerDiv>
         <DayContent date={date} update={update}>
           <h2>
             {format(parse(date, "yyyy-MM-dd", new Date()), "do MMM yyyy")}
           </h2>
           {children}
         </DayContent>
-        <TrackerDiv ref={refEnd} className="green"></TrackerDiv>
+        <TrackerDiv height={height} ref={refEnd} className="green"></TrackerDiv>
       </div>
     </DayWrap>
   );
 };
 
-export default compose(withPaths(["timelineModel"]), observer)(DayContainer);
+export default compose(
+  withPaths(["timelineModel", "timelineModel.currentChart"]),
+  observer
+)(DayContainer);

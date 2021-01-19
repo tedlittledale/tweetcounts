@@ -16,9 +16,11 @@ import RootContext from "./RootContext";
 
 const Wrapper = styled("div")`
   width: 100%;
+  background: var(--color-selection-background);
 `;
 
 const Grid = styled("div")`
+  background: var(--color-selection-background);
   display: grid;
   grid: 1fr/280px 1fr;
   ${withProp(
@@ -31,6 +33,7 @@ const Grid = styled("div")`
 `;
 
 const ChartWrapper = styled("div")`
+  background: var(--color-selection-background);
   display: grid;
   grid: 1fr/280px 1fr;
   ${media.phablet`grid: 1fr/1fr;`}

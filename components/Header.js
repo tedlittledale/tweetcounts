@@ -12,6 +12,8 @@ const Wrapper = styled("header")`
   border-bottom: 1px solid var(--color-faint);
   div {
     width: 70%;
+    ${media.phablet`width: 80%;`}
+    ${media.phone`width: 80%;`}
   }
   h1 {
     font-size: 90px;
@@ -36,6 +38,8 @@ const Intro = styled("div")`
   z-index: 1000000000000;
   div {
     width: 70%;
+    ${media.phablet`width: 80%;`}
+    ${media.phone`width: 80%;`}
     padding: 30px 0;
   }
   p {

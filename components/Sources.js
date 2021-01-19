@@ -8,11 +8,15 @@ const Wrapper = styled("header")`
   align-items: center;
   justify-items: center;
   border-top: 1px solid var(--color-faint);
-  margin-top: 80px;
+  margin-top: 120px;
   padding: 50px 0 100px;
   background: hsl(209, 61%, 16%);
   > * {
     color: white;
+  }
+  a {
+    color: hsl(212, 33%, 89%);
+    text-decoration: underline;
   }
   div {
     width: 70%;
@@ -35,8 +39,34 @@ const Sources = () => {
       <div>
         <h2>Sources</h2>
         <p>
-          Visualising the relationship between covid cases and local restriction
-          tiers in the lead up to the January 2021 lockdown.
+          The case rata and tier data was pulled directly from the{" "}
+          <a
+            href="https://coronavirus.data.gov.uk/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            UK Government coronavirus dashboard
+          </a>
+          .
+        </p>
+        <p>
+          The chart design was inspired by the{" "}
+          <a
+            href="https://twitter.com/carlbaker/status/1319635045787774976"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Carl Baker's original design
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://twitter.com/jburnmurdoch/status/1331951138225188865"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            John Burn-Murdoch's later iterations
+          </a>
+          .
         </p>
       </div>
     </Wrapper>

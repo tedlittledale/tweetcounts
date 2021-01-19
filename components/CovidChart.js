@@ -15,6 +15,8 @@ const ChartWrap = styled("div")`
   width: 100%;
   padding-top: 50px;
   padding-left: 20px;
+  ${media.phablet` padding-left: 0px;`}
+  ${media.phone` padding-left: 0px;`}
   border-left: 1px solid var(--color-faint);
   ${media.phablet` padding-top: 50px;`}
   ${media.phone` padding-top: 50px;`}

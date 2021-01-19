@@ -280,7 +280,7 @@ const DatesContainer = () => {
         <ul>
           <li>
             <p>
-              Cases continue to rise rapidly with the new Covid varient and the
+              Cases continue to rise rapidly with the new Covid variant and the
               relaxing of restrictions at Christmas appearing to pay a part.
             </p>
           </li>

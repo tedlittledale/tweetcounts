@@ -178,7 +178,7 @@ const DatesContainer = () => {
             <h3>Tiers updated:</h3>
             <p>
               Areas within London, the South East and the East of England go
-              into new strickter Tier Four restrictions.
+              into new stricter Tier Four restrictions.
             </p>
           </li>
         </ul>
@@ -188,7 +188,7 @@ const DatesContainer = () => {
           <li>
             <p>
               All but two of the areas now in Tier Four were initially placed
-              into Tier Two when lockdown ended.
+              into the more lax Tier Two restrictions when lockdown ended.
             </p>
           </li>
         </ul>
@@ -214,7 +214,8 @@ const DatesContainer = () => {
           <li>
             <p>
               One of the few areas in Tier Four to begin trending downwards is
-              Medway, which was never placed into Tier Two.
+              Medway, which was never placed into the more lax Tier Two
+              restrictions.
             </p>
           </li>
         </ul>
@@ -277,7 +278,12 @@ const DatesContainer = () => {
       </Day>
       <Day date={`2021-01-02`}>
         <ul>
-          <li></li>
+          <li>
+            <p>
+              Cases continue to rise rapidly with the new Covid varient and the
+              relaxing of restrictions at Christmas appearing to pay a part.
+            </p>
+          </li>
         </ul>
       </Day>
       <Day date={`2021-01-03`}>
@@ -287,7 +293,12 @@ const DatesContainer = () => {
       </Day>
       <Day date={`2021-01-04`}>
         <ul>
-          <li></li>
+          <li>
+            <p>
+              The Prime Minister announces that a new lockdown will begin at
+              Midnight.
+            </p>
+          </li>
         </ul>
       </Day>
       <Day date={`2021-01-05`} update>

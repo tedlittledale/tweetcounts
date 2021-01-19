@@ -32,8 +32,7 @@ const DatesContainer = () => {
             <h3>Lockdown ends:</h3>
             <p>
               England's second lockdown ends at 12.01am, and the second tier
-              system is adopted. Gyms, hairdressers and non-essential shops are
-              allowed to reopen.
+              system is adopted.
             </p>
           </li>
         </ul>

@@ -37,7 +37,7 @@ const Sources = () => {
   return (
     <Wrapper className="wrapper">
       <div>
-        <h2>Sources</h2>
+        <h2>About</h2>
         <p>
           The case rate and tier data was pulled directly from the{" "}
           <a
@@ -67,6 +67,18 @@ const Sources = () => {
             John Burn-Murdoch's later iterations
           </a>
           .
+        </p>
+        <p>
+          Thanks to{" "}
+          <a
+            href="https://www.linkedin.com/in/elaine-cowen-51b07725/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Elaine Cowen
+          </a>{" "}
+          for lending her analytical mind and extracting some key insights from
+          the data.
         </p>
       </div>
     </Wrapper>

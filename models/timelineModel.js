@@ -1,5 +1,5 @@
 import { types, onSnapshot, flow, getSnapshot } from "mobx-state-tree";
-import { find, findLast, propEq, filter } from "ramda";
+import { find, findLast, propEq, filter, type } from "ramda";
 import { differenceInDays, parse } from "date-fns";
 
 import { CovidChart } from "./covidChart";
@@ -17,6 +17,7 @@ export const TimelineModel = types
   .model("TimelineModel", {
     currentDate: types.maybeNull(types.string),
     allData: types.array(DataLine),
+    allDataMap: types.maybeNull(types.frozen({})),
     keyDates: types.array(types.string),
     keyDatesArray: types.map(types.array(DataLine)),
     currentChart: CovidChart
@@ -25,21 +26,13 @@ export const TimelineModel = types
     afterCreate() {
       self.currentDate = "2020-12-02";
       self.setCurrentChart();
-      self.keyDates.map((date) => {
-        const chartData = filter(
-          ({ day }) => day === date,
-          self.allData.toJSON()
-        );
-        self.keyDatesArray.set(date, chartData);
-      });
     },
     setCases: (cases) => {
-      self.allData = cases;
+      console.log({ cases });
+      self.allDataMap = cases;
+
       self.keyDates.map((date) => {
-        const chartData = filter(
-          ({ day }) => day === date,
-          self.allData.toJSON()
-        );
+        const chartData = self.allDataMap[date];
         self.keyDatesArray.set(date, chartData);
       });
     },
@@ -81,12 +74,12 @@ export const TimelineModel = types
     },
     setCurrentChart: () => {
       const currentDate = self.currentDate;
-      const currentChartData = filter(
-        ({ day }) => day === currentDate,
-        self.allData
-      );
+      const currentChartData = self.allDataMap[currentDate];
+      console.log(self.allDataMap);
       console.log({ currentChartData });
-      self.currentChart.setData(currentChartData.map((data) => data.toJSON()));
+      console.log(currentDate);
+      console.log(self.allDataMap[currentDate]);
+      self.currentChart.setData(currentChartData);
     }
   }))
   .views((self) => {

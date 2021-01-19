@@ -19,7 +19,6 @@ const DataLine = types.model("DataLine", {
 export const CovidChart = types
   .model("CovidChart", {
     data: types.array(DataLine),
-    allData: types.array(DataLine),
     minY: 0,
     maxY: types.maybeNull(types.number),
     minX: 0,
@@ -33,14 +32,11 @@ export const CovidChart = types
     state: "init"
   })
   .actions((self) => ({
-    setCases: (cases) => {
-      self.allData = cases;
-    },
     setAnnotation: (annotation) => {
       self.annotation = annotation;
     },
     setData: (data) => {
-      if (data.length === 0) {
+      if (!data || data.length === 0) {
         return;
       }
       const allTiers = [];
@@ -83,7 +79,7 @@ export const CovidChart = types
       console.log({ isMobile });
       self.isMobile = isMobile;
       self.width = width;
-      let maxY = 0,
+      let maxY = 1463, //hard code for performance as data is static
         minY = 0,
         maxX = 0,
         minX = 0;
@@ -97,10 +93,10 @@ export const CovidChart = types
         ? Math.round(isMobile ? (height * 2) / 3 : height - 100)
         : self.height;
       self.height = chartHeight;
-      console.log(self.allData.toJSON());
-      self.allData.forEach(({ cases_07da }) => {
-        maxY = Math.max(maxY, parseInt(cases_07da, 10));
-      });
+      // self.allData.forEach(({ cases_07da }) => {
+      //   maxY = Math.max(maxY, parseInt(cases_07da, 10));
+      // });
+
       maxX = self.data.length;
       self.yScale = scaleLinear()
         .domain([maxY, minY])

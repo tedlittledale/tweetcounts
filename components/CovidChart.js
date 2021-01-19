@@ -58,10 +58,8 @@ const CovidChart = ({
   console.log(currentChart.annotation);
   useEffect(() => {
     async function fetchData() {
-      let { default: cases } = await import("../models/cases");
-      console.log({ cases });
-      timelineModel.setCases(cases);
-      currentChart.setCases(cases);
+      let cases = await import("../models/casesMap");
+      timelineModel.setCases(cases.default);
       timelineModel.setDate("2020-12-02");
       updateScales();
       // ...

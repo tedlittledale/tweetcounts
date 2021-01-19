@@ -39,7 +39,7 @@ const Sources = () => {
       <div>
         <h2>Sources</h2>
         <p>
-          The case rata and tier data was pulled directly from the{" "}
+          The case rate and tier data was pulled directly from the{" "}
           <a
             href="https://coronavirus.data.gov.uk/"
             target="_blank"

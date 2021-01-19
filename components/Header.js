@@ -58,8 +58,9 @@ const TimeLine = () => {
         <div>
           <h1>Tracks of our tiers</h1>
           <p>
-            Visualising the relationship between covid cases and local
-            restriction tiers in the lead up to the January 2021 lockdown.
+            A timeline visualisation showing the relationship between covid case
+            rates and local restriction tiers in the lead up to the January 2021
+            lockdown.
           </p>
         </div>
       </Wrapper>

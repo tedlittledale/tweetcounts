@@ -18,7 +18,7 @@ const Marker = types.model("DataLine", {
 export const CountdownModel = types
   .model("TimelineModel", {
     allData: types.array(DataLine),
-    sevenDayAverage: types.maybeNull(types.number),
+    sevenDayAverage: types.maybeNull(types.string),
     markers: types.array(Marker),
     daysToHerd: types.maybeNull(types.number),
     currentPage: 0
@@ -102,7 +102,7 @@ export const CountdownModel = types
 
       self.allData = data;
       self.daysToHerd = daysToHerd;
-      self.sevenDayAverage = sevenDayAverage;
+      self.sevenDayAverage = numeral(sevenDayAverage).format("0.0a");
       console.log({ lastUpdated });
       self.markers = [
         {
@@ -137,7 +137,7 @@ export const CountdownModel = types
         self.setPage(self.currentPage + inc);
         self.timeoutId = setTimeout(() => {
           self.timeoutId = clearTimeout(self.timeoutId);
-        }, 500);
+        }, 1000);
       }
     },
     afterCreate() {

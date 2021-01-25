@@ -44,7 +44,7 @@ const SplashWrapper = styled("div")`
   `}
 `;
 
-const SplashCounter = ({ daysToHerd }) => {
+const SplashCounter = ({ daysToHerd, sevenDayAverage }) => {
   const [timeLeft, setTimeLeft] = useState(0);
 
   useEffect(() => {
@@ -65,10 +65,11 @@ const SplashCounter = ({ daysToHerd }) => {
     <>
       <SplashWrapper>
         <h1>
-          Days* till new new normal**: <span>{timeLeft}</span>{" "}
+          Days* 'till new new normal**: <span>{timeLeft}</span>{" "}
         </h1>
         <p>
-          *Based on 7 day average of daily vaccinations and many assumputions
+          *Based on current 7 day average of {sevenDayAverage} daily
+          vaccinations and many assumptions
         </p>
         <p>**Whatever this means</p>
       </SplashWrapper>

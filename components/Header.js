@@ -65,17 +65,23 @@ const Intro = styled("div")`
   }
 `;
 
-const Header = ({ countdownModel: { daysToHerd }, countdownModel }) => {
+const Header = ({
+  countdownModel: { daysToHerd, sevenDayAverage },
+  countdownModel
+}) => {
   console.log({ daysToHerd });
   return (
     <>
       <Wrapper className="wrapper">
         <div>
-          <SplashCounter daysToHerd={daysToHerd} />
+          <SplashCounter
+            daysToHerd={daysToHerd}
+            sevenDayAverage={sevenDayAverage}
+          />
           <ScrollDownIcon
             onClickHandler={(e) => {
               console.log(e);
-              countdownModel.setPage(1);
+              countdownModel.updatePage(1);
             }}
           />
         </div>

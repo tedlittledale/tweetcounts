@@ -316,6 +316,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/lora/-/lora-4.1.0.tgz#bb386542e00d8fd9c330942d06765db88872b107"
   integrity sha512-P1Fx9htWJpTQareN6IR7hTh2Zw8HvfPhM/4yQR4Gfxl2UQDMnRHUAlfh7f/qyr9m9JDXNzh4LYk7AUn9zQD2kA==
 
+"@fontsource/nunito-sans@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/nunito-sans/-/nunito-sans-4.1.0.tgz#b2aee9f5cc6e42c1c3438226caf3e3ac456138b1"
+  integrity sha512-9DWNcCFYUiFjwV/EzwApdCHsJqKw7l2qw4ljYN2/w51GIkX1WDmpthHdzNx4cSuIFeF7LDJNg4/PWq/dW3feag==
+
 "@fontsource/vollkorn@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@fontsource/vollkorn/-/vollkorn-4.1.0.tgz#751a37b27beacc9ac10b79ecbe2c4375fd3dedb5"
@@ -2957,6 +2962,11 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
+
+numeral@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/numeral/-/numeral-2.0.6.tgz#4ad080936d443c2561aed9f2197efffe25f4e506"
+  integrity sha1-StCAk21EPCVhrtnyGX7//iX05QY=
 
 object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"

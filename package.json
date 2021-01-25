@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/core": "^7.12.10",
     "@fontsource/lora": "^4.1.0",
+    "@fontsource/nunito-sans": "^4.1.0",
     "@fontsource/vollkorn": "^4.1.0",
     "d3-ease": "^2.0.0",
     "d3-format": "^2.0.0",
@@ -19,6 +20,7 @@
     "mobx-react-lite": "^3.1.6",
     "mobx-state-tree": "^4.0.2",
     "next": "latest",
+    "numeral": "^2.0.6",
     "ramda": "^0.27.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

@@ -47,7 +47,7 @@ const colors = css`
 
   ::selection {
     color: var(--color-selection-foreground);
-    background: var(--color-selection-background);
+    background: var(--color-page-content);
   }
 `;
 

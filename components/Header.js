@@ -1,26 +1,40 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
+import { compose, path } from "ramda";
+import { observer } from "mobx-react-lite";
+import { withPaths } from "../utils/store";
 import { media } from "../utils/media";
+import SplashCounter from "./SplashCounter";
+import ScrollDownIcon from "./ScrollDownIcon";
 
 const Wrapper = styled("header")`
   height: 100vh;
   width: 100%;
   display: grid;
-  grid: 1fr / 1fr;
+  grid: 1fr/ 1fr;
   align-items: center;
   justify-items: center;
   border-bottom: 1px solid var(--color-faint);
-  div {
-    width: 70%;
-    ${media.phablet`width: 80%;`}
-    ${media.phone`width: 80%;`}
+  > div {
+    width: 95%;
+    height: 100vh;
+    display: grid;
+    grid: 1fr 200px / 1fr;
+    align-items: center;
+    justify-items: center;
   }
+`;
+
+const Titles = styled("div")`
+  width: 85%;
   h1 {
-    font-size: 90px;
+    font-size: 60px;
+    display: grid;
     ${media.phablet`font-size: 40px;`}
     ${media.phone`font-size: 40px;`}
   }
   p {
+    width: 85%;
     font-size: 30px;
     ${media.phablet`font-size: 20px;`}
     ${media.phone`font-size: 20px;`}
@@ -51,41 +65,23 @@ const Intro = styled("div")`
   }
 `;
 
-const TimeLine = () => {
+const Header = ({ countdownModel: { daysToHerd }, countdownModel }) => {
+  console.log({ daysToHerd });
   return (
     <>
       <Wrapper className="wrapper">
         <div>
-          <h1>Tracks of our tiers</h1>
-          <p>
-            A timeline visualisation showing the relationship between covid case
-            rates and local restriction tiers in the lead up to the January 2021
-            lockdown.
-          </p>
+          <SplashCounter daysToHerd={daysToHerd} />
+          <ScrollDownIcon
+            onClickHandler={(e) => {
+              console.log(e);
+              countdownModel.setPage(1);
+            }}
+          />
         </div>
       </Wrapper>
-      <Intro>
-        <div>
-          <p>
-            On the 2nd December after the end of the second national lockdown
-            English regions were placed into three Tiers depending on how badly
-            each area was affected by Covid 19.
-          </p>
-          <p>
-            This visualisation explores how the cases rates changed between the
-            second lockdown ending and the third lockdown begining. Patterns
-            emerge which appear to show how being placed in a lower tier at the
-            start of this period resulted in a case rates rising faster than in
-            regions under striceter conditions.
-          </p>
-          <p>
-            It's worth noting that the government used several criteria, not
-            just case rates to decide the tiers.
-          </p>
-        </div>
-      </Intro>
     </>
   );
 };
 
-export default TimeLine;
+export default compose(withPaths(["countdownModel"]), observer)(Header);

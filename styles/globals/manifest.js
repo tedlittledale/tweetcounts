@@ -1,7 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 
-import "@fontsource/lora/700.css";
+import "@fontsource/nunito-sans/900-italic.css";
 
 import normalize from "./normalize";
 import theme from "./theme";
@@ -17,7 +17,7 @@ const ThemeGlobalStyles = createGlobalStyle`${theme}`;
 const BaseGlobalStyles = createGlobalStyle`${base}`;
 const AppGlobalStyles = createGlobalStyle`${app}`;
 
-export default () => (
+const Styles = () => (
   <>
     <NormalizeGlobalStyles />
     <ThemeGlobalStyles />
@@ -25,3 +25,4 @@ export default () => (
     <AppGlobalStyles />
   </>
 );
+export default Styles;

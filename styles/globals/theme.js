@@ -13,6 +13,7 @@ const lightTheme = css`
   --color-page-overscroll: hsl(0, 0%, 100%);
   --color-selection-foreground: hsl(0, 0%, 100%);
   --color-selection-background: hsl(210, 36%, 96%);
+  --color-text-default: hsl(209, 61%, 16%);
   --color-faint: hsl(212, 33%, 89%);
   --color-faint-transparent: hsla(212, 33%, 89%, 0.5);
 `;
@@ -36,7 +37,7 @@ export default css`
 
     --font-body-stack: Verdana, sans-serif;
     --font-body-line-height: 1.4;
-    --font-heading-stack: "lora", serif;
+    --font-heading-stack: "Nunito Sans", sans-serif;
     --font-heading-line-height: 1.4 ${lightTheme};
 
     --color-font-highlight: hsl(360, 92%, 20%);

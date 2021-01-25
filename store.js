@@ -1,13 +1,12 @@
 import { useMemo } from "react";
 import { types, applySnapshot } from "mobx-state-tree";
-import { TimelineModel } from "./models/timelineModel";
+import { CountdownModel } from "./models/CountdownModel";
 
 let store;
 
 const Store = types
   .model({
-    timelineModel: TimelineModel,
-    light: false
+    countdownModel: CountdownModel
   })
   .actions((self) => {
     let timer;
@@ -20,24 +19,8 @@ const Store = types
     return { start, stop, update };
   });
 
-export function initializeStore(snapshot = null) {
-  const _store =
-    store ??
-    Store.create({
-      timelineModel: {
-        allData: [],
-        keyDates: [
-          "2021-01-05",
-          "2020-12-31",
-          "2020-12-26",
-          "2020-12-20",
-          "2020-12-19",
-          "2020-12-16",
-          "2020-12-02"
-        ],
-        currentChart: { data: [], allData: [] }
-      }
-    });
+export function initializeStore(snapshot = null, allData = []) {
+  const _store = store ?? Store.create({ countdownModel: { allData } });
 
   // If your page has Next.js data fetching methods that use a Mobx store, it will
   // get hydrated here, check `pages/ssg.js` and `pages/ssr.js` for more details

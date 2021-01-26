@@ -49,6 +49,10 @@ const colors = css`
     color: var(--color-selection-foreground);
     background: var(--color-page-content);
   }
+
+  a {
+    color: var(--color-page-content);
+  }
 `;
 
 export default css`

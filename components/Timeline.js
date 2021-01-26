@@ -17,13 +17,17 @@ const TimelineWrapper = styled("div")`
   > div {
     padding-top: 10vh;
     width: 100%;
-    height: 100vh;
-    ${withProp(["pageHeight"], (pageHeight) => `height: ${pageHeight}px;`)};
+    ${withProp(
+      ["pageHeight"],
+      (pageHeight) => `height: ${0.9 * pageHeight}px;`
+    )};
     display: grid;
     grid: 1fr / 1fr;
     align-items: start;
     justify-items: center;
-    ${media.phablet`padding-top: 0;`}
+    ${media.phablet`padding-top: 0;
+    ${withProp(["pageHeight"], (pageHeight) => `height: ${pageHeight}px;`)};
+    `}
   }
 `;
 

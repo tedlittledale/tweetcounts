@@ -14,56 +14,43 @@ const Wrapper = styled("header")`
   width: 100%;
   display: grid;
   grid: 1fr/ 1fr;
-  align-items: center;
+  align-items: start;
   justify-items: center;
   border-bottom: 1px solid var(--color-faint);
+
   > div {
-    width: 95%;
-    height: 100vh;
+    width: 80%;
+    ${media.phablet`
+    
+    width: 90%;
+  `}
     display: grid;
-    grid: 1fr 200px / 1fr;
-    align-items: center;
+    align-items: start;
     justify-items: center;
   }
-`;
-
-const Titles = styled("div")`
-  width: 85%;
-  h1 {
-    font-size: 60px;
-    display: grid;
-    ${media.phablet`font-size: 40px;`}
-    ${media.phone`font-size: 40px;`}
+  h3 {
+    font-size: 40px;
+    margin-top: 20px;
+    font-weight: 600;
+    font-style: italic;
   }
   p {
-    width: 85%;
-    font-size: 30px;
-    ${media.phablet`font-size: 20px;`}
-    ${media.phone`font-size: 20px;`}
-  }
-`;
-
-const Intro = styled("div")`
-  display: grid;
-  grid: 1fr / 1fr;
-  align-items: center;
-  justify-items: center;
-  border-bottom: 1px solid var(--color-faint);
-  background: hsl(209, 61%, 16%);
-  position: relative;
-  z-index: 1000000000000;
-  div {
-    width: 70%;
-    ${media.phablet`width: 80%;`}
-    ${media.phone`width: 80%;`}
-    padding: 30px 0;
-  }
-  p {
-    font-size: 18px;
     margin: 20px 0;
-    color: white;
-    ${media.phablet`font-size: 20px;`}
-    ${media.phone`font-size: 20px;`}
+    ${media.phablet`
+    font-size:14px;
+    font-weight:normal;
+    font-style:normal;
+    margin: 10px 0;
+  `}
+    > span {
+      color: var(--color-highlight);
+    }
+  }
+  h4 {
+    font-size: 20px;
+    justify-self: start;
+    font-weight: 600;
+    font-style: italic;
   }
 `;
 
@@ -76,11 +63,63 @@ const Breakdown = ({
     <>
       <Wrapper pageHeight={pageHeight} className="wrapper">
         <div>
-          <SplashCounter
-            daysToHerd={daysToHerd}
-            sevenDayAverage={sevenDayAverage}
-            herdDate={herdDate}
-          />
+          <h3>About</h3>
+          <p>
+            I've calculated the <span>Freedom</span> date of{" "}
+            <span>{herdDate}</span> as the date the UK could potentially reach
+            herd immunity through vaccination of 80% of the population.
+          </p>
+          <p>
+            This 80% figure is a{" "}
+            <a
+              href="https://www.nytimes.com/2020/12/24/health/herd-immunity-covid-coronavirus.html?auth=login-google"
+              target="_black"
+              rel="noreferrer noopener"
+            >
+              based on comments Anthony Fauci made
+            </a>{" "}
+            and is making an optimistic assumption that a single dose will be
+            enough give enough immunity.
+          </p>
+          <p>
+            This date should be taken with a massive pinch of salt, no-one knows
+            yet what will be needed to reach herd immunity. Also I'm a developer
+            and not a epidemiologist. One thing we can say is that the success
+            so far of the vaccination programme in the UK should be a source of
+            great optimism and is a massive credit the the NHS. I built this as
+            a way to celebrate that optimism.
+          </p>
+          <p>
+            I recommend listening to the{" "}
+            <a
+              href="https://www.bbc.co.uk/programmes/m000py6s"
+              target="_black"
+              rel="noreferrer noopener"
+            >
+              How to Vaccinate the World
+            </a>{" "}
+            podcast if you want to hear from actually experts about the national
+            and international vaccine rollout.
+          </p>
+          <p>
+            This was built by{" "}
+            <a
+              href="https://twitter.com/home"
+              target="_black"
+              rel="noreferrer noopener"
+            >
+              Ted Littldale
+            </a>
+            . Please check out some of{" "}
+            <a
+              href="https://tedspace.me/datavis"
+              target="_black"
+              rel="noreferrer noopener"
+            >
+              my other data visualisations
+            </a>
+            .
+          </p>
         </div>
       </Wrapper>
     </>

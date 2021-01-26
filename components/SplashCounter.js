@@ -36,11 +36,20 @@ const SplashWrapper = styled("div")`
       justify-items: right;
       grid: 1fr / 5fr 3fr;
       ${media.phablet`
-    font-size: 90px;
-    grid: 3fr 2fr / 1fr;
-    justify-items: center;
-    height: 180px;
-  `}
+        font-size: 90px;
+        grid: 3fr 2fr / 1fr;
+        justify-items: center;
+        height: 180px;
+      `}
+      > span {
+        display: grid;
+        align-items: center;
+        justify-items: right;
+        grid: 3fr 2fr / 1fr;
+        ${media.phablet`
+          display: block;
+        `}
+      }
     }
   }
 
@@ -51,12 +60,15 @@ const SplashWrapper = styled("div")`
     white-space: nowrap;
     justify-items: left;
     display: grid;
-    align-items: end;
+    grid: 1fr / 1fr;
+    align-items: center;
+    justify-self: start;
     padding-left: 30px;
     ${media.phablet`
     display: block;
     font-size: 30px;
     padding-left: 0px;
+    justify-self: center;
   `}
     opacity: 0;
     transition: opacity 500ms ease-in-out;

@@ -116,7 +116,7 @@ const SplashCounter = ({ daysToHerd, sevenDayAverage, herdDate }) => {
     <>
       <SplashWrapper>
         <h1>
-          Days* 'till freedom**:{" "}
+          Days* 'til freedom**:{" "}
           <span>
             {timeLeft}
             <span className={`date ${dateVisible && "visible"}`}>

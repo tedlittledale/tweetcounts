@@ -70,16 +70,17 @@ const Breakdown = ({
             herd immunity through vaccination of 80% of the population.
           </p>
           <p>
-            This 80% figure is a{" "}
+            This 80% figure is{" "}
             <a
               href="https://www.nytimes.com/2020/12/24/health/herd-immunity-covid-coronavirus.html?auth=login-google"
               target="_black"
               rel="noreferrer noopener"
             >
               based on comments Anthony Fauci made
-            </a>{" "}
-            and is making an optimistic assumption that a single dose will be
-            enough give enough immunity.
+            </a>
+            {", "}
+            and is an optimistic assumption that a single dose will give enough
+            immunity.
           </p>
           <p>
             This date should be taken with a massive pinch of salt, no-one knows
@@ -98,7 +99,7 @@ const Breakdown = ({
             >
               How to Vaccinate the World
             </a>{" "}
-            podcast if you want to hear from actually experts about the national
+            podcast if you want to hear from actual experts about the national
             and international vaccine rollout.
           </p>
           <p>

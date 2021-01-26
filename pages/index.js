@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
+import { useMouseWheel } from "react-use";
 import styled from "styled-components";
+import { withProp } from "styled-tools";
 import { getSnapshot } from "mobx-state-tree";
 import { compose, path } from "ramda";
 import { observer } from "mobx-react-lite";
@@ -8,38 +10,62 @@ import { withPaths } from "../utils/store";
 import { parse, addDays, format } from "date-fns/fp";
 import Header from "../components/Header";
 import Timeline from "../components/Timeline";
+import Breakdown from "../components/Breakdown";
 import { initializeStore } from "../store";
 import { useScroll } from "../utils/hooks/useScroll";
 
 const Pages = styled("div")`
   display: grid;
   grid: 100vh 100vh/ 1fr;
+  height: 100vh;
+  overflow: hidden;
 `;
 
-const PageSection = styled("div")`
-  display: grid;
-  grid: 100vh 100vh/ 1fr;
+const PagesScroller = styled("div")`
+  position: absolute;
+  transition: top 500ms ease-in-out;
+  top: 0;
+  top: ${withProp(
+    ["currentPage", "pageHeight"],
+    (currentPage, pageHeight) => `-${currentPage * pageHeight}px`
+  )};
 `;
 
 const Home = ({ countdownModel, countdownModel: { currentPage } }) => {
-  const { scrollY, scrollDirection } = useScroll();
+  const [scrollDirection, setScrollDirection] = useState(0);
+  const [lastUpdate, setLastUpdate] = useState(0);
+  const [lastScrollEvent, setLastScrolEvent] = useState(0);
+  const [updateDiff, setUpdateDiff] = useState(0);
+  const [pageHeight, setPageHeight] = useState(0);
   useEffect(() => {
-    if (scrollDirection === 1 || scrollDirection === -1) {
+    const now = Date.now();
+    const diff = now - lastUpdate;
+    if (diff > 50 && (scrollDirection === 1 || scrollDirection === -1)) {
       countdownModel.updatePage(scrollDirection);
     }
+    setLastUpdate(now);
 
     return () => {};
-  }, [scrollDirection, scrollY]);
+  }, [lastScrollEvent]);
   useEffect(() => {
-    var pageHeight = window.innerHeight;
-    console.log({ currentPage });
-    window.scrollTo({
-      left: 0,
-      top: currentPage * pageHeight,
-      behavior: "smooth"
+    const updateHeight = () => {
+      setPageHeight(window.innerHeight);
+    };
+    setPageHeight(window.innerHeight);
+    window.addEventListener("wheel", (e) => {
+      const { deltaY } = e;
+
+      setScrollDirection(deltaY > 0 ? 1 : -1);
+      const now = Date.now();
+      setUpdateDiff(now - lastUpdate);
+      setLastScrolEvent(now);
     });
-    return () => {};
-  }, [currentPage]);
+    window.addEventListener("resize", updateHeight);
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, []);
+
   return (
     <>
       <Head>
@@ -81,8 +107,11 @@ const Home = ({ countdownModel, countdownModel: { currentPage } }) => {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <Pages>
-        <Header />
-        <Timeline />
+        <PagesScroller currentPage={currentPage} pageHeight={pageHeight}>
+          <Header />
+          <Timeline />
+          <Breakdown />
+        </PagesScroller>
       </Pages>
     </>
   );

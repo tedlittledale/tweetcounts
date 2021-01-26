@@ -8,6 +8,7 @@ import { media } from "../utils/media";
 
 const SplashWrapper = styled("div")`
   height: 100%;
+  position: relative;
   display: grid;
   grid: 3fr 1fr 1fr / 1fr;
   align-items: center;
@@ -28,7 +29,23 @@ const SplashWrapper = styled("div")`
   span {
     font-size: 120px;
     display: grid;
-    justify-content: center;
+    align-items: center;
+    justify-items: right;
+    grid: 1fr / 5fr 3fr;
+  }
+  .date {
+    opacity: 1;
+    font-size: 40px;
+    white-space: nowrap;
+    justify-items: left;
+    display: grid;
+    align-items: end;
+    padding-left: 30px;
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+    &.visible {
+      opacity: 1;
+    }
   }
   p {
     font-size: 25px;
@@ -44,12 +61,15 @@ const SplashWrapper = styled("div")`
   `}
 `;
 
-const SplashCounter = ({ daysToHerd, sevenDayAverage }) => {
+const SplashCounter = ({ daysToHerd, sevenDayAverage, herdDate }) => {
   const [timeLeft, setTimeLeft] = useState(0);
-
+  const [dateVisible, setDateVisible] = useState(false);
   useEffect(() => {
     // exit early when we reach 0
-    if (timeLeft === daysToHerd) return;
+    if (timeLeft === daysToHerd) {
+      setDateVisible(true);
+      return;
+    }
 
     // save intervalId to clear the interval when the
     // component re-renders
@@ -65,13 +85,19 @@ const SplashCounter = ({ daysToHerd, sevenDayAverage }) => {
     <>
       <SplashWrapper>
         <h1>
-          Days* 'till new new normal**: <span>{timeLeft}</span>{" "}
+          Days* 'till freedom**:{" "}
+          <span>
+            {timeLeft}
+            <span className={`date ${dateVisible && "visible"}`}>
+              ({herdDate})
+            </span>
+          </span>
         </h1>
         <p>
           *Based on current 7 day average of {sevenDayAverage} daily
           vaccinations and many assumptions
         </p>
-        <p>**Whatever this means</p>
+        <p>**Freedom not guaranteed</p>
       </SplashWrapper>
     </>
   );

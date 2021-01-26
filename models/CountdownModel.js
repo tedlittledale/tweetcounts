@@ -19,6 +19,7 @@ export const CountdownModel = types
   .model("TimelineModel", {
     allData: types.array(DataLine),
     sevenDayAverage: types.maybeNull(types.string),
+    herdDate: types.maybeNull(types.string),
     markers: types.array(Marker),
     daysToHerd: types.maybeNull(types.number),
     currentPage: 0
@@ -83,7 +84,7 @@ export const CountdownModel = types
         };
       };
 
-      const { date: herdDate, days: daysToHerd } = getTargetDate({
+      const { date: ninetyPercentDate } = getTargetDate({
         targetPop: ninetyPercentPop,
         latestTotal,
         average: sevenDayAverage
@@ -93,7 +94,7 @@ export const CountdownModel = types
         latestTotal: latestTotal2ndDose,
         average: sevenDayAverage2ndDose
       });
-      const { date: eightyPercentDate } = getTargetDate({
+      const { date: eightyPercentDate, days: daysToHerd } = getTargetDate({
         targetPop: eightyPercentPop,
         latestTotal,
         average: sevenDayAverage
@@ -104,6 +105,7 @@ export const CountdownModel = types
       self.daysToHerd = daysToHerd;
       self.sevenDayAverage = numeral(sevenDayAverage).format("0.0a");
       console.log({ lastUpdated });
+      self.herdDate = format("do MMM", eightyPercentDate);
       self.markers = [
         {
           date: format("dd.MM.yyyy", lastUpdated),
@@ -114,10 +116,10 @@ export const CountdownModel = types
             Math.round(1000 * (getDayOfYear(lastUpdated) / 365)) / 1000
         },
         {
-          date: format("dd.MM.yyyy", herdDate),
+          date: format("dd.MM.yyyy", ninetyPercentDate),
           label: `90% of population will have first dose`,
           percentOfYear:
-            Math.round(1000 * (getDayOfYear(herdDate) / 365)) / 1000
+            Math.round(1000 * (getDayOfYear(ninetyPercentDate) / 365)) / 1000
         },
         {
           date: format("dd.MM.yyyy", eightyPercentDate),
@@ -128,8 +130,8 @@ export const CountdownModel = types
       ];
     },
     setPage(newPage) {
-      console.log({ newPage: Math.min(1, Math.max(0, newPage)) });
-      self.currentPage = Math.min(1, Math.max(0, newPage));
+      console.log({ newPage: Math.min(2, Math.max(0, newPage)) });
+      self.currentPage = Math.min(2, Math.max(0, newPage));
     },
     updatePage(inc) {
       if (typeof self.timeoutId !== "number") {
@@ -137,7 +139,7 @@ export const CountdownModel = types
         self.setPage(self.currentPage + inc);
         self.timeoutId = setTimeout(() => {
           self.timeoutId = clearTimeout(self.timeoutId);
-        }, 1000);
+        }, 500);
       }
     },
     afterCreate() {

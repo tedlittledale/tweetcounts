@@ -1,10 +1,15 @@
-import {css} from 'styled-components'
+import { css } from "styled-components";
 
 // -------------------------------------------------------------
 // App.
 // -------------------------------------------------------------
 
 export default css`
+  body,
+  html {
+    height: 100vh;
+    overflow: hidden;
+  }
   /**
    * Reset.
    */
@@ -45,4 +50,4 @@ export default css`
   /**
    * App.
    */
-`
+`;

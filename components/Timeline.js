@@ -5,16 +5,24 @@ import { compose, path } from "ramda";
 import { observer } from "mobx-react-lite";
 import { withPaths } from "../utils/store";
 import { media } from "../utils/media";
+import ScrollDownIcon from "./ScrollDownIcon";
 
 const TimelineWrapper = styled("div")`
   width: 100%;
-  height: 200px;
-  margin-top: 160px;
-  display: grid;
-  grid: 1fr / 1fr;
-  align-items: start;
-  justify-items: center;
-  ${media.phablet`margin-top: 0px; height: 100vh;`}
+  height: 100vh;
+  margin-top: 0;
+  padding-top: 0vh;
+
+  > div {
+    padding-top: 10vh;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid: 1fr / 1fr;
+    align-items: start;
+    justify-items: center;
+    ${media.phablet`padding-top: 0;`}
+  }
 `;
 
 const Bar = styled("div")`
@@ -30,6 +38,7 @@ const Bar = styled("div")`
   align-content: center;
   justify-items: start;
   position: relative;
+  margin-top: 134px;
   ${media.phablet`
     justify-self:start;
     margin-left: 130px;
@@ -109,82 +118,87 @@ const Marker = styled("div")`
   }
 `;
 
-const Timeline = ({
-  countdownModel: { herdDate, markers },
-  countdownModel
-}) => {
+const Timeline = ({ countdownModel: { markers }, countdownModel }) => {
   console.log({ markers });
   return (
     <>
       <TimelineWrapper>
-        <Bar>
-          <MonthMarker>
-            <h4>
-              <span>Jan</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>Feb</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>Mar</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>Apr</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>May</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>Jun</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>Jul</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>Aug</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>Sep</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>Oct</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>Nov</span>
-            </h4>
-          </MonthMarker>
-          <MonthMarker>
-            <h4>
-              <span>Dec</span>
-            </h4>
-          </MonthMarker>
-          {markers.map(({ percentOfYear, label, date }) => (
-            <Marker percentOfYear={percentOfYear}>
-              <h4>{label}</h4>
-              <p>{date}</p>
-            </Marker>
-          ))}
-        </Bar>
+        <div>
+          <Bar>
+            <MonthMarker>
+              <h4>
+                <span>Jan</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>Feb</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>Mar</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>Apr</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>May</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>Jun</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>Jul</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>Aug</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>Sep</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>Oct</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>Nov</span>
+              </h4>
+            </MonthMarker>
+            <MonthMarker>
+              <h4>
+                <span>Dec</span>
+              </h4>
+            </MonthMarker>
+            {markers.map(({ percentOfYear, label, date }) => (
+              <Marker percentOfYear={percentOfYear}>
+                <h4>{label}</h4>
+                <p>{date}</p>
+              </Marker>
+            ))}
+          </Bar>
+          <ScrollDownIcon
+            onClickHandler={(e) => {
+              console.log(e);
+              countdownModel.updatePage(1);
+            }}
+          />
+        </div>
       </TimelineWrapper>
     </>
   );

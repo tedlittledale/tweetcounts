@@ -4,7 +4,7 @@
  *    const { scrollX, scrollY, scrollDirection } = useScroll();
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { curry, apply } from "ramda";
 
 const debounce_ = curry((immediate, timeMs, fn) => () => {
@@ -47,25 +47,27 @@ export function useScroll() {
   const [scrollY, setScrollY] = useState(bodyOffset.top);
   const [scrollX, setScrollX] = useState(bodyOffset.left);
   const [scrollDirection, setScrollDirection] = useState();
+  const [pageY, setPageY] = useState(0);
+  const [ignore, setIgnore] = useState(false);
+  const [lastUpdate, setLastUpdate] = useState(Date.now());
 
-  const listener = (e) => {
-    setBodyOffset(document.body.getBoundingClientRect());
-    setScrollY(-bodyOffset.top);
-    setScrollX(bodyOffset.left);
-    setScrollDirection(lastScrollTop > -bodyOffset.top ? -1 : 1);
-    setLastScrollTop(-bodyOffset.top);
+  const updateValues = ({ deltaY, pageY }) => {
+    console.log({ deltaY, pageY });
+    setScrollDirection(deltaY > 0 ? 1 : -1);
+    setPageY(pageY);
+    timeout(() => {});
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", listener);
-    return () => {
-      window.removeEventListener("scroll", listener);
-    };
-  });
+    window.addEventListener("wheel", (e) => {
+      setLastUpdate(Date.now());
+      const { deltaY, pageY } = e;
+      updateValues({ deltaY, pageY });
+    });
+  }, []);
 
   return {
-    scrollY,
-    scrollX,
-    scrollDirection
+    scrollDirection,
+    lastUpdate
   };
 }

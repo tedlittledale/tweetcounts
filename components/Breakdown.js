@@ -65,7 +65,7 @@ const Intro = styled("div")`
   }
 `;
 
-const Header = ({
+const Breakdown = ({
   countdownModel: { daysToHerd, sevenDayAverage, herdDate },
   countdownModel
 }) => {
@@ -79,16 +79,10 @@ const Header = ({
             sevenDayAverage={sevenDayAverage}
             herdDate={herdDate}
           />
-          <ScrollDownIcon
-            onClickHandler={(e) => {
-              console.log(e);
-              countdownModel.updatePage(1);
-            }}
-          />
         </div>
       </Wrapper>
     </>
   );
 };
 
-export default compose(withPaths(["countdownModel"]), observer)(Header);
+export default compose(withPaths(["countdownModel"]), observer)(Breakdown);

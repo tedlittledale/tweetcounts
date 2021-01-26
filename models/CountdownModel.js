@@ -13,7 +13,8 @@ const DataLine = types.model("DataLine", {
 const Marker = types.model("DataLine", {
   date: types.string,
   label: types.string,
-  percentOfYear: types.number
+  percentOfYear: types.number,
+  isHerd: false
 });
 export const CountdownModel = types
   .model("TimelineModel", {
@@ -124,6 +125,7 @@ export const CountdownModel = types
         {
           date: format("dd.MM.yyyy", eightyPercentDate),
           label: `80% of population will have first dose`,
+          isHerd: true,
           percentOfYear:
             Math.round(1000 * (getDayOfYear(eightyPercentDate) / 365)) / 1000
         }

@@ -18,6 +18,7 @@ const TimelineWrapper = styled("div")`
     padding-top: 10vh;
     width: 100%;
     height: 100vh;
+    ${withProp(["pageHeight"], (pageHeight) => `height: ${pageHeight}px;`)};
     display: grid;
     grid: 1fr / 1fr;
     align-items: start;
@@ -49,15 +50,21 @@ const Bar = styled("div")`
     margin-left: 130px;
     grid: repeat(12, 1fr) / 1fr; 
     width: 10px;
-    height: 90%;
-    margin-top:10%;
+    height: 95%;
+    margin-top:5%;
     align-content: start;
     justify-items: center;
     position: relative;
   `}
+  * {
+    white-space: nowrap;
+    font-weight: 800;
+    font-style: italic;
+  }
 `;
 
 const MonthMarker = styled("div")`
+  font-weight: 800;
   width: 30px;
   height: 30px;
   border-radius: 15px;
@@ -96,7 +103,9 @@ const Marker = styled("div")`
   width: 5px;
   height: 80px;
   top: -50px;
-  background: var(--color-page-content);
+  background: ${withProp("isHerd", (isHerd) =>
+    isHerd ? `var(--color-highlight)` : `var(--color-page-content)`
+  )};
   ${media.phablet`
     left:-30px;
     top: ${withProp("percentOfYear", (percentOfYear) => percentOfYear * 100)}%;
@@ -104,9 +113,12 @@ const Marker = styled("div")`
     height:5px;
   `}
   h4 {
-    white-space: nowrap;
+    font-size: 16px;
     transform: rotate(60deg);
     margin-top: 80px;
+    color: ${withProp("isHerd", (isHerd) =>
+      isHerd ? `var(--color-highlight)` : `var(--color-page-content)`
+    )};
     ${media.phablet`
         margin-top: -10px;
         margin-left: 80px;  
@@ -115,6 +127,10 @@ const Marker = styled("div")`
   p {
     transform: rotate(-45deg);
     margin-top: -130px;
+    font-size: 14px;
+    color: ${withProp("isHerd", (isHerd) =>
+      isHerd ? `var(--color-highlight)` : `var(--color-page-content)`
+    )};
     ${media.phablet`
         margin-top: -21px;
         margin-left: -95px;
@@ -194,8 +210,8 @@ const Timeline = ({
                 <span>Dec</span>
               </h4>
             </MonthMarker>
-            {markers.map(({ percentOfYear, label, date }) => (
-              <Marker percentOfYear={percentOfYear}>
+            {markers.map(({ percentOfYear, label, date, isHerd }) => (
+              <Marker percentOfYear={percentOfYear} isHerd={isHerd}>
                 <h4>{label}</h4>
                 <p>{date}</p>
               </Marker>

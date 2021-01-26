@@ -19,9 +19,8 @@ const Wrapper = styled("header")`
   border-bottom: 1px solid var(--color-faint);
   > div {
     width: 95%;
-    height: 100vh;
+    ${withProp(["pageHeight"], (pageHeight) => `height: ${pageHeight}px;`)};
     display: grid;
-    grid: 1fr 200px / 1fr;
     align-items: center;
     justify-items: center;
   }

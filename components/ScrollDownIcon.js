@@ -29,7 +29,7 @@ const ScrollDownIconWrapper = styled("div")`
     top: 0;
     height: 100%;
     width: 51%;
-    background: var(--color-text-default);
+    background: var(--color-highlight);
   }
 
   .chevron:before {

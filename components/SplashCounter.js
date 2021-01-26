@@ -11,10 +11,13 @@ const SplashWrapper = styled("div")`
   position: relative;
   display: grid;
   grid: 3fr 1fr 1fr / 1fr;
+  ${media.phablet`
+    grid: 1fr auto auto / 1fr;
+  `}
   align-items: center;
   justify-items: center;
   > * {
-    width: 80%;
+    width: 90%;
   }
   h1 {
     font-size: 50px;
@@ -25,19 +28,22 @@ const SplashWrapper = styled("div")`
     display: grid;
     justify-content: center;
     text-align: center;
-  }
-  span {
-    font-size: 120px;
-    display: grid;
-    align-items: center;
-    justify-items: right;
-    grid: 1fr / 5fr 3fr;
-    ${media.phablet`
+    > span {
+      font-size: 120px;
+      color: var(--color-highlight);
+      display: grid;
+      align-items: center;
+      justify-items: right;
+      grid: 1fr / 5fr 3fr;
+      ${media.phablet`
     font-size: 90px;
     grid: 3fr 2fr / 1fr;
     justify-items: center;
+    height: 180px;
   `}
+    }
   }
+
   .date {
     opacity: 1;
     font-size: 40px;
@@ -48,6 +54,7 @@ const SplashWrapper = styled("div")`
     align-items: end;
     padding-left: 30px;
     ${media.phablet`
+    display: block;
     font-size: 30px;
     padding-left: 0px;
   `}
@@ -68,6 +75,7 @@ const SplashWrapper = styled("div")`
   }
   p {
     font-size: 20px;
+    margin-bottom: 10px;
   }
   `}
 `;

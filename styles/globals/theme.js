@@ -16,6 +16,7 @@ const lightTheme = css`
   --color-text-default: hsl(209, 61%, 16%);
   --color-faint: hsl(212, 33%, 89%);
   --color-faint-transparent: hsla(212, 33%, 89%, 0.5);
+  --color-highlight: hsl(184, 77%, 34%);
 `;
 
 const darkTheme = css`

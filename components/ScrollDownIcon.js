@@ -61,15 +61,13 @@ const ScrollDownIconWrapper = styled("div")`
   }
 `;
 
-const ScrollDownIcon = ({ onClickHandler }) => {
+const ScrollDownIcon = ({ onClickHandler, ...props }) => {
   return (
-    <>
-      <ScrollDownIconWrapper onClick={onClickHandler}>
-        <div className="chevron"></div>
-        <div className="chevron"></div>
-        <div className="chevron"></div>
-      </ScrollDownIconWrapper>
-    </>
+    <ScrollDownIconWrapper {...props} onClick={onClickHandler}>
+      <div className="chevron"></div>
+      <div className="chevron"></div>
+      <div className="chevron"></div>
+    </ScrollDownIconWrapper>
   );
 };
 

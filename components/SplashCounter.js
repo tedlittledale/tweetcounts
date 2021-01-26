@@ -32,10 +32,16 @@ const SplashWrapper = styled("div")`
     align-items: center;
     justify-items: right;
     grid: 1fr / 5fr 3fr;
+    ${media.phablet`
+    font-size: 90px;
+  `}
   }
   .date {
     opacity: 1;
     font-size: 40px;
+    ${media.phablet`
+    font-size: 30px;
+  `}
     white-space: nowrap;
     justify-items: left;
     display: grid;

@@ -25,6 +25,10 @@ const TimelineWrapper = styled("div")`
   }
 `;
 
+const TimelineScrollDownIcon = styled(ScrollDownIcon)`
+  ${media.phablet`display:none;`}
+`;
+
 const Bar = styled("div")`
   width: 90%;
   padding: 0 0 0 0;
@@ -192,7 +196,7 @@ const Timeline = ({ countdownModel: { markers }, countdownModel }) => {
               </Marker>
             ))}
           </Bar>
-          <ScrollDownIcon
+          <TimelineScrollDownIcon
             onClickHandler={(e) => {
               console.log(e);
               countdownModel.updatePage(1);

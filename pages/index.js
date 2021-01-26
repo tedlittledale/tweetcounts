@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSwipeable } from "react-swipeable";
 import Head from "next/head";
 import { useMouseWheel } from "react-use";
 import styled from "styled-components";
@@ -37,6 +38,21 @@ const Home = ({ countdownModel, countdownModel: { currentPage } }) => {
   const [lastScrollEvent, setLastScrolEvent] = useState(0);
   const [updateDiff, setUpdateDiff] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
+  const handlers = useSwipeable({
+    onSwiped: ({ dir }) => {
+      const now = Date.now();
+      console.log({ dir });
+      setScrollDirection(dir === "Up" ? 1 : -1);
+      setLastScrolEvent(now);
+    },
+    ...{
+      delta: 10, // min distance(px) before a swipe starts
+      preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
+      trackTouch: true, // track touch input
+      trackMouse: true, // track mouse input
+      rotationAngle: 0 // set a rotation angle
+    }
+  });
   useEffect(() => {
     const now = Date.now();
     const diff = now - lastUpdate;
@@ -106,7 +122,7 @@ const Home = ({ countdownModel, countdownModel: { currentPage } }) => {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <Pages>
+      <Pages {...handlers}>
         <PagesScroller currentPage={currentPage} pageHeight={pageHeight}>
           <Header />
           <Timeline />

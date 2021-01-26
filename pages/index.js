@@ -19,6 +19,7 @@ const Pages = styled("div")`
   display: grid;
   grid: 100vh 100vh/ 1fr;
   height: 100vh;
+  ${withProp(["pageHeight"], (pageHeight) => `height: ${pageHeight}px;`)};
   overflow: hidden;
 `;
 
@@ -122,11 +123,11 @@ const Home = ({ countdownModel, countdownModel: { currentPage } }) => {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <Pages {...handlers}>
+      <Pages {...handlers} pageHeight={pageHeight}>
         <PagesScroller currentPage={currentPage} pageHeight={pageHeight}>
-          <Header />
-          <Timeline />
-          <Breakdown />
+          <Header pageHeight={pageHeight} />
+          <Timeline pageHeight={pageHeight} />
+          <Breakdown pageHeight={pageHeight} />
         </PagesScroller>
       </Pages>
     </>

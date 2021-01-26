@@ -10,6 +10,7 @@ import ScrollDownIcon from "./ScrollDownIcon";
 const TimelineWrapper = styled("div")`
   width: 100%;
   height: 100vh;
+  ${withProp(["pageHeight"], (pageHeight) => `height: ${pageHeight}px;`)};
   margin-top: 0;
   padding-top: 0vh;
 
@@ -122,11 +123,15 @@ const Marker = styled("div")`
   }
 `;
 
-const Timeline = ({ countdownModel: { markers }, countdownModel }) => {
+const Timeline = ({
+  countdownModel: { markers },
+  countdownModel,
+  pageHeight
+}) => {
   console.log({ markers });
   return (
     <>
-      <TimelineWrapper>
+      <TimelineWrapper pageHeight={pageHeight}>
         <div>
           <Bar>
             <MonthMarker>

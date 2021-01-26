@@ -34,19 +34,23 @@ const SplashWrapper = styled("div")`
     grid: 1fr / 5fr 3fr;
     ${media.phablet`
     font-size: 90px;
+    grid: 3fr 2fr / 1fr;
+    justify-items: center;
   `}
   }
   .date {
     opacity: 1;
     font-size: 40px;
-    ${media.phablet`
-    font-size: 30px;
-  `}
+
     white-space: nowrap;
     justify-items: left;
     display: grid;
     align-items: end;
     padding-left: 30px;
+    ${media.phablet`
+    font-size: 30px;
+    padding-left: 0px;
+  `}
     opacity: 0;
     transition: opacity 500ms ease-in-out;
     &.visible {
@@ -55,6 +59,7 @@ const SplashWrapper = styled("div")`
   }
   p {
     font-size: 25px;
+    text-align: center;
     font-family: var(--font-heading-stack);
   }
   ${media.phablet`

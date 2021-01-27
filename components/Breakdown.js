@@ -44,6 +44,8 @@ const Wrapper = styled("header")`
     margin: 10px 0;
   `}
     > span {
+      font-weight: 800;
+      font-style: italic;
       color: var(--color-highlight);
     }
   }

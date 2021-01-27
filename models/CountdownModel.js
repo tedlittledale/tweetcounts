@@ -124,7 +124,7 @@ export const CountdownModel = types
         },
         {
           date: format("dd.MM.yyyy", eightyPercentDate),
-          label: `80% of population will have had 2nd dose`,
+          label: `80% of population will have had 1st dose`,
           isHerd: true,
           percentOfYear:
             Math.round(1000 * (getDayOfYear(eightyPercentDate) / 365)) / 1000

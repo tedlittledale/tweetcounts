@@ -122,7 +122,7 @@ const Breakdown = ({
               target="_black"
               rel="noreferrer noopener"
             >
-              Ted Littldale
+              Ted Littledale
             </a>
             . Please check out some of{" "}
             <a

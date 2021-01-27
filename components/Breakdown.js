@@ -10,7 +10,8 @@ import ScrollDownIcon from "./ScrollDownIcon";
 
 const Wrapper = styled("header")`
   height: 100vh;
-  ${withProp(["pageHeight"], (pageHeight) => `height: ${pageHeight}px;`)};
+
+  height: 100vh;
   width: 100%;
   display: grid;
   grid: 1fr/ 1fr;

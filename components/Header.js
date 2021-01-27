@@ -10,7 +10,9 @@ import ScrollDownIcon from "./ScrollDownIcon";
 
 const Wrapper = styled("header")`
   height: 100vh;
-  ${withProp(["pageHeight"], (pageHeight) => `height: ${pageHeight}px;`)};
+  ${withProp(["pageHeight"], (pageHeight) =>
+    pageHeight ? `height: ${pageHeight}px;` : ""
+  )};
   width: 100%;
   display: grid;
   grid: 1fr/ 1fr;
@@ -19,7 +21,10 @@ const Wrapper = styled("header")`
   border-bottom: 1px solid var(--color-faint);
   > div {
     width: 95%;
-    ${withProp(["pageHeight"], (pageHeight) => `height: ${pageHeight}px;`)};
+    height: 100vh;
+    ${withProp(["pageHeight"], (pageHeight) =>
+      pageHeight ? `height: ${pageHeight}px;` : ""
+    )};
     display: grid;
     align-items: center;
     justify-items: center;

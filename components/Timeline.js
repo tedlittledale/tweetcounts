@@ -46,7 +46,7 @@ const Bar = styled("div")`
   ${media.phone`width: 80%;`} */
   height: 10px;
 
-  background: var(--color-page-content);
+  background: var(--color-pagecontent);
   display: grid;
   grid: 1fr / repeat(12, 1fr);
   align-content: center;
@@ -76,17 +76,17 @@ const MonthMarker = styled("div")`
   width: 30px;
   height: 30px;
   border-radius: 15px;
-  background: var(--color-page-content);
+  background: var(--color-pagecontent);
   z-index: 10;
   position: relative;
   ${media.phablet`
-margin-top:-1px;
+    margin-top:-15px;
     margin-left:-10px;
   `}
   h4 {
     transform: rotate(-45deg);
     margin-top: -30px;
-    background: var(--color-selection-background);
+    background: var(--color-selectionbackground);
     ${media.phablet`
         transform: rotate(0deg);
         height:30px;
@@ -94,7 +94,7 @@ margin-top:-1px;
         text-align:center;
         margin-top: 0;
         font-size: 12px;
-        color: var(--color-selection-background);
+        color: var(--color-selectionbackground);
         margin-left: 0px;
         background: none;
         display:grid;
@@ -112,7 +112,7 @@ const Marker = styled("div")`
   height: 80px;
   top: -50px;
   background: ${withProp("isHerd", (isHerd) =>
-    isHerd ? `var(--color-highlight)` : `var(--color-page-content)`
+    isHerd ? `var(--color-highlight)` : `var(--color-pagecontent)`
   )};
   ${media.phablet`
     left:-30px;
@@ -125,7 +125,7 @@ const Marker = styled("div")`
     transform: rotate(60deg);
     margin-top: 80px;
     color: ${withProp("isHerd", (isHerd) =>
-      isHerd ? `var(--color-highlight)` : `var(--color-page-content)`
+      isHerd ? `var(--color-highlight)` : `var(--color-pagecontent)`
     )};
     ${media.phablet`
         margin-top: -10px;
@@ -137,7 +137,7 @@ const Marker = styled("div")`
     margin-top: -130px;
     font-size: 14px;
     color: ${withProp("isHerd", (isHerd) =>
-      isHerd ? `var(--color-highlight)` : `var(--color-page-content)`
+      isHerd ? `var(--color-highlight)` : `var(--color-pagecontent)`
     )};
     ${media.phablet`
         margin-top: -21px;

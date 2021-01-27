@@ -8,10 +8,11 @@ import { media } from "../utils/media";
 import SplashCounter from "./SplashCounter";
 import ScrollDownIcon from "./ScrollDownIcon";
 
-const Wrapper = styled("header")`
+const Wrapper = styled("div")`
   height: 100vh;
 
   height: 100vh;
+  overflow: scroll;
   width: 100%;
   display: grid;
   grid: 1fr/ 1fr;
@@ -23,6 +24,7 @@ const Wrapper = styled("header")`
     width: 80%;
     ${media.phablet`
     
+  overflow: scroll;
     width: 90%;
   `}
     display: grid;
@@ -34,6 +36,11 @@ const Wrapper = styled("header")`
     margin-top: 20px;
     font-weight: 600;
     font-style: italic;
+
+    @media (max-height: 627px) {
+      font-size: 30px;
+      margin-top: 10px;
+    }
   }
   p {
     margin: 20px 0;
@@ -43,6 +50,9 @@ const Wrapper = styled("header")`
     font-style:normal;
     margin: 10px 0;
   `}
+    @media (max-height: 627px) {
+      margin: 5px 0;
+    }
     > span {
       font-weight: 800;
       font-style: italic;

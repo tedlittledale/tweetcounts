@@ -112,19 +112,19 @@ export const CountdownModel = types
           date: format("dd.MM.yyyy", lastUpdated),
           label: `Latest update - ${numeral(latestTotal).format(
             "0.0a"
-          )} people have 1st dose`,
+          )} people have had 1st dose`,
           percentOfYear:
             Math.round(1000 * (getDayOfYear(lastUpdated) / 365)) / 1000
         },
         {
           date: format("dd.MM.yyyy", ninetyPercentDate),
-          label: `90% of population will have first dose`,
+          label: `90% of population will have had 1st dose`,
           percentOfYear:
             Math.round(1000 * (getDayOfYear(ninetyPercentDate) / 365)) / 1000
         },
         {
           date: format("dd.MM.yyyy", eightyPercentDate),
-          label: `80% of population will have first dose`,
+          label: `80% of population will have had 2nd dose`,
           isHerd: true,
           percentOfYear:
             Math.round(1000 * (getDayOfYear(eightyPercentDate) / 365)) / 1000

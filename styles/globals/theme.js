@@ -8,23 +8,24 @@ import { css } from "styled-components";
 // -------------------------------------------------------------
 
 const lightTheme = css`
-  --color-page-content: hsl(209, 61%, 16%);
-  --color-page-content-faded: hsl(0, 0%, 50%);
+  --color-pagecontent: hsl(209, 61%, 16%);
+  --color-pagecontent: hsl(209, 61%, 16%);
+  --color-pagecontent-faded: hsl(0, 0%, 50%);
   --color-page-overscroll: hsl(0, 0%, 100%);
   --color-selection-foreground: hsl(0, 0%, 100%);
-  --color-selection-background: hsl(210, 36%, 96%);
-  --color-text-default: hsl(209, 61%, 16%);
+  --color-selectionbackground: hsl(210, 36%, 96%);
+  --color-textdefault: hsl(209, 61%, 16%);
   --color-faint: hsl(212, 33%, 89%);
   --color-faint-transparent: hsla(212, 33%, 89%, 0.5);
   --color-highlight: hsl(184, 77%, 34%);
 `;
 
 const darkTheme = css`
-  --color-page-content: hsl(0, 0%, 100%);
+  --color-pagecontent: hsl(0, 0%, 100%);
   --color-page-background: hsl(0, 0%, 10%);
   --color-page-overscroll: hsl(0, 0%, 10%);
   --color-selection-foreground: hsl(0, 0%, 100%);
-  --color-selection-background: var(--color-accent);
+  --color-selectionbackground: var(--color-accent);
 `;
 
 export default css`

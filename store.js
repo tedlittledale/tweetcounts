@@ -6,7 +6,7 @@ let store;
 
 const Store = types
   .model({
-    countdownModel: CountdownModel
+    exampleModel: ExampleModel
   })
   .actions((self) => {
     let timer;
@@ -20,7 +20,7 @@ const Store = types
   });
 
 export function initializeStore(snapshot = null, allData = []) {
-  const _store = store ?? Store.create({ countdownModel: { allData } });
+  const _store = store ?? Store.create({ exampleModel: { allData } });
 
   // If your page has Next.js data fetching methods that use a Mobx store, it will
   // get hydrated here, check `pages/ssg.js` and `pages/ssr.js` for more details

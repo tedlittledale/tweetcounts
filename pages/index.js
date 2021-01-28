@@ -1,17 +1,11 @@
-import { useEffect, useState } from "react";
-import { useSwipeable } from "react-swipeable";
+import React from "react";
 import Head from "next/head";
-import { useMouseWheel } from "react-use";
 import styled from "styled-components";
-import { withProp } from "styled-tools";
 import { getSnapshot } from "mobx-state-tree";
-import { compose, path } from "ramda";
+import { compose } from "ramda";
 import { observer } from "mobx-react-lite";
 import { withPaths } from "../utils/store";
-import { parse, addDays, format } from "date-fns/fp";
 import Header from "../components/Header";
-import Timeline from "../components/Timeline";
-import Breakdown from "../components/Breakdown";
 import { initializeStore } from "../store";
 
 const Pages = styled("div")``;

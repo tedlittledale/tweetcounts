@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { types, applySnapshot } from "mobx-state-tree";
-import { CountdownModel } from "./models/CountdownModel";
+import { ExampleModel } from "./models/ExampleModel";
 
 let store;
 

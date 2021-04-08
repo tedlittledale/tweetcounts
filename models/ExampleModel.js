@@ -6,7 +6,8 @@ const DataLine = types.model("DataLine", {
 
 export const ExampleModel = types
   .model("TimelineModel", {
-    allData: types.array(DataLine)
+    allData: types.array(DataLine),
+    projectName: "Prototype boilerplate"
   })
   .actions((self) => ({
     processData(data) {},

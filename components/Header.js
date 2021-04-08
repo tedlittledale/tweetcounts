@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { withProp } from "styled-tools";
+import { compose } from "ramda";
+import { observer, enableStaticRendering } from "mobx-react-lite";
+import { withPaths } from "../utils/store";
+
+enableStaticRendering(true);
 
 const Wrapper = styled("header")`
   height: 100vh;
-
   width: 100%;
   display: grid;
   grid: 1fr/ 1fr;
@@ -15,16 +18,16 @@ const Wrapper = styled("header")`
   }
 `;
 
-const Header = ({}) => {
+const Header = ({ exampleModel }) => {
   return (
     <>
       <Wrapper>
         <div>
-          <h1>Prototype boilterplate</h1>
+          <h1>{exampleModel.projectName}</h1>
         </div>
       </Wrapper>
     </>
   );
 };
 
-export default Header;
+export default compose(withPaths(["exampleModel"]), observer)(Header);

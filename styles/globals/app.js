@@ -7,8 +7,7 @@ import { css } from "styled-components";
 export default css`
   body,
   html {
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
   }
   /**
    * Reset.

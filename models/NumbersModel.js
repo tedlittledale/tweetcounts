@@ -1,12 +1,15 @@
 import { types } from "mobx-state-tree";
 
-const DataLine = types.model("DataLine", {
-  date: types.string
+const Number = types.model("Number", {
+  name: types.string,
+  category: types.string,
+  value: types.number,
+  unit: types.string
 });
 
-export const ExampleModel = types
-  .model("TimelineModel", {
-    allData: types.array(DataLine),
+export const NumbersModel = types
+  .model("NumbersModel", {
+    numbers: types.array(Number),
     projectName: "Prototype boilerplate"
   })
   .actions((self) => ({

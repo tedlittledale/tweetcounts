@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { compose } from "ramda";
 import { observer, enableStaticRendering } from "mobx-react-lite";
-import { withPaths } from "../utils/store";
+import { useMst } from "../models/Root";
 
 enableStaticRendering(true);
 
@@ -18,16 +18,17 @@ const Wrapper = styled("header")`
   }
 `;
 
-const Header = ({ exampleModel }) => {
+const Header = observer(() => {
+  const { numbersModel } = useMst();
   return (
     <>
       <Wrapper>
         <div>
-          <h1>{exampleModel.projectName}</h1>
+          <h1>{numbersModel.projectName}</h1>
         </div>
       </Wrapper>
     </>
   );
-};
+});
 
-export default compose(withPaths(["exampleModel"]), observer)(Header);
+export default Header;

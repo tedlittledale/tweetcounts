@@ -1,12 +1,11 @@
-import { Provider } from "mobx-react";
-import { useStore } from "../store";
+import React, { useEffect } from "react";
+import { Provider, rootStore } from "../models/Root";
 import GlobalStyles from "../styles/globals/manifest";
 
 export default function App({ Component, pageProps }) {
-  const store = useStore(pageProps.initialState);
-
+  console.log({ Provider, rootStore });
   return (
-    <Provider store={store}>
+    <Provider value={rootStore}>
       <GlobalStyles />
       <Component {...pageProps} />
     </Provider>

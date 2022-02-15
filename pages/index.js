@@ -3,11 +3,14 @@ import Head from "next/head";
 import styled from "styled-components";
 import { getSnapshot } from "mobx-state-tree";
 import Header from "../components/Header";
-import { initializeStore } from "../store";
+import { useMst } from "../models/Root";
 
 const Pages = styled("div")``;
 
-const Home = () => {
+export default function Index(props) {
+  const { numbersModel } = useMst();
+  console.log({ numbersModel });
+
   return (
     <>
       <Head>
@@ -48,15 +51,4 @@ const Home = () => {
       </Pages>
     </>
   );
-};
-
-export default Home;
-
-// The date returned here will be different for every request that hits the page,
-// that is because the page becomes a serverless function instead of being statically
-// exported when you use `getServerSideProps` or `getInitialProps`
-export async function getStaticProps() {
-  const store = initializeStore();
-
-  return { props: { initialState: getSnapshot(store) } };
 }

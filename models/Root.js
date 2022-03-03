@@ -1,13 +1,13 @@
 import { Instance, onSnapshot, types } from "mobx-state-tree";
 import { createContext, useContext } from "react";
-import { NumbersModel } from "./NumbersModel";
+import { ChartModel } from "./ChartModel";
 
 const RootModel = types.model({
-  numbersModel: NumbersModel
+  chartModel: ChartModel
 });
 
 let initialState = RootModel.create({
-  numbersModel: { numbers: [] }
+  chartModel: { data: null }
 });
 console.log({ initialState });
 if (process.browser) {

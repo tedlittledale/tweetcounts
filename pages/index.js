@@ -2,15 +2,16 @@ import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
 import { getSnapshot } from "mobx-state-tree";
-import Header from "../components/Header";
+import Chart from "../components/Chart";
 import { useMst } from "../models/Root";
+import getTweetCounts from "../lib/api/twitter/getTweetCounts";
 
 const Pages = styled("div")``;
 
 export default function Index(props) {
-  const { numbersModel } = useMst();
-  console.log({ numbersModel });
-
+  const { chartModel } = useMst();
+  console.log({ chartModel, props });
+  chartModel.processData({ data: props.results });
   return (
     <>
       <Head>
@@ -47,8 +48,17 @@ export default function Index(props) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <Pages>
-        <Header />
+        <Chart />
       </Pages>
     </>
   );
+}
+
+export async function getStaticProps() {
+  // Instead of fetching your `/api` route you can call the same
+  // function directly in `getStaticProps`
+  const results = await getTweetCounts();
+
+  // Props returned will be passed to the page component
+  return { props: { results } };
 }

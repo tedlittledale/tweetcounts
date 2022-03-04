@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { prop, withProp } from "styled-tools";
+// import Tweet from "./Tweet";
 /*
  * animalMap is hash of animalNames mapped to images of said animal
  * e.g. Human: 'https://heartrates.tedspace.me/static/8f0a74d0b575cd3ce699b9d4815151d1/e35b7/icons8-human2-50.png',
@@ -30,6 +31,9 @@ const PointsWrap = styled("svg")`
   line {
     stroke: #d8d8d8;
   }
+  circle {
+    cursor: pointer;
+  }
 `;
 
 const Blinker = styled.div`
@@ -43,33 +47,125 @@ const Blinker = styled.div`
     ${withProp(["duration"], (duration) => `${duration}ms`)} linear infinite;
 `;
 
-const Points = ({ points = [] }) => {
+const TweetPreviewContainer = styled.div`
+  position: absolute;
+  width: 400px;
+  display: ${({ hide }) => (hide ? "none" : "block")};
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.8);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--spacing-4);
+  margin: var(--spacing-3);
+`;
+
+const TweetPreview = ({
+  data,
+  currentThread,
+  setPopperElement,
+  hoveredTweet,
+  user,
+  ...rest
+}) => {
+  const {
+    id: tweetId,
+
+    quoteTweetText,
+    videos,
+    ...restTweetData
+  } = data || {};
+  return (
+    <TweetPreviewContainer
+      // ref={setPopperElement}
+      {...rest}
+      hide={!data}
+    >
+      {data && (
+        <Tweet
+          tweetId={tweetId}
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+          photos={
+            data.images
+              ? data.images.map((base64Image) => ({
+                  imageUrl: base64Image
+                }))
+              : []
+          }
+          text={data.text || ""}
+          time="1631539864985"
+          {...{
+            quoteTweetText,
+            videos,
+            ...restTweetData
+          }}
+        />
+      )}
+    </TweetPreviewContainer>
+  );
+};
+
+const Points = ({ data = [] }) => {
+  const [fetching, setFetching] = useState(false);
+  const [tweetData, setTweetData] = useState(null);
+  const [startEnd, setStartEnd] = useState({});
+  const [query, setQuery] = useState(null);
   const imageSize = 30;
+  useMemo(() => {
+    const fetchData = async ({ start, end }) => {
+      if (!start || !end) return;
+      setFetching(true);
+      const response = await fetch(
+        `/api/twitter/search/${encodeURIComponent(
+          JSON.stringify({ start, end, query })
+        )}`
+      );
+      if (!response.ok) {
+        const message = `An error has occured: ${response.status}`;
+        throw new Error(message);
+      }
+      const data = await response.json();
+      console.log({ data });
+      const body = JSON.parse(data.response.body);
+      console.log({ body });
+      setTweetData(body.statuses[0]);
+      setFetching(false);
+    };
+    const { start, end } = startEnd;
+    fetchData({ start, end });
+  }, [startEnd]);
   return (
     <>
       <PointsWrap>
-        {points.map(({ x, y, label, pulse }, i) => (
+        {data?.points.map(({ x, y, start, end, query, label, pulse }, i) => (
           <g key={i}>
             <g>
               <circle
-                fill="red"
+                onMouseEnter={() => {
+                  console.log({ start, end });
+                  setQuery(query);
+                  setStartEnd({ start, end });
+                }}
+                fill={data.color}
                 stroke={"black"}
                 strokeWidth={1}
                 cx={x}
                 cy={y}
-                r={2}
+                r={3}
               ></circle>
-              <path
-                d="M 10,30
-           A 20,20 0,0,1 50,30
-           A 20,20 0,0,1 90,30
-           Q 90,60 50,90
-           Q 10,60 10,30 z"
-              />
             </g>
           </g>
         ))}
       </PointsWrap>
+      <div>
+        <TweetPreview
+          // style={styles.popper}
+          // {...attributes.popper}
+          // setPopperElement={setPopperElement}
+          data={tweetData}
+          hoveredTweet={tweetData}
+        />
+      </div>
     </>
   );
 };

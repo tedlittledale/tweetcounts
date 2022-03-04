@@ -5,6 +5,7 @@ import { useMst } from "../models/Root";
 import Key from "./Key";
 import Axes from "./Axes";
 import Line from "./Line";
+import Points from "./Points";
 import Loading from "./Loading";
 import Map from "./Map";
 import Legend from "./Legend";
@@ -63,12 +64,13 @@ const Chart = ({ model }) => {
     chartModel.setUpScales({ width });
   };
   useEffect(() => {
+    console.log("updateScales");
     updateScales();
     window.addEventListener("resize", updateScales);
     return () => {
       window.removeEventListener("resize", updateScales);
     };
-  }, []);
+  }, [chartModel.data]);
   return (
     <>
       <ChartWrap>
@@ -83,19 +85,26 @@ const Chart = ({ model }) => {
                 yLabel={`Tweet count`}
                 paddingAndMargins={chartModel.paddingAndMargins}
               ></Axes>
-              {Object.entries(chartModel.data).map(([key, value], idx) => (
+              {chartModel.data.map(({ result, queryName }, idx) => (
                 <Line
                   data={chartModel.getLine({
-                    data: value.data,
-                    name: key,
+                    data: result.data,
                     idx
                   })}
                 ></Line>
               ))}
+              {/* {chartModel.data.map(({ result, queryName }, idx) => (
+                <Points
+                  data={chartModel.getPoints({
+                    data: result.data,
+                    idx
+                  })}
+                ></Points>
+              ))} */}
               <Legend cities={chartModel.getCities()} />
             </div>
           ) : (
-            <Loading></Loading>
+            <div></div>
           )}
         </div>
       </ChartWrap>

@@ -2,10 +2,9 @@
   "name": "with-mobx-state-tree",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 3005",
     "build": "next build",
-    "start": "next start",
-    "export": "next export",
+    "start": "next start -p 3006",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -14,6 +13,8 @@
     "@fontsource/lora": "^4.1.0",
     "@fontsource/nunito-sans": "^4.1.0",
     "@fontsource/vollkorn": "^4.1.0",
+    "@netlify/plugin-nextjs": "^4.2.7",
+    "@twitter/feather": "^6.1.0",
     "d3": "^7.3.0",
     "d3-ease": "^2.0.0",
     "d3-format": "^2.0.0",
@@ -26,6 +27,7 @@
     "mobx-react-lite": "^3.2.1",
     "mobx-state-tree": "^5.0.1",
     "needle": "^3.0.0",
+    "netlify-cli": "^9.12.3",
     "next": "latest",
     "numeral": "^2.0.6",
     "ramda": "^0.27.1",
@@ -38,7 +40,8 @@
     "react-swipeable": "^6.0.1",
     "react-use": "^15.3.8",
     "styled-components": "^5.2.1",
-    "styled-tools": "^1.7.2"
+    "styled-tools": "^1.7.2",
+    "twitter": "^1.7.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.2",

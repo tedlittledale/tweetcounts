@@ -11,7 +11,7 @@ const LegendWrap = styled("div")`
   right: 16px;
   top: 0;
   height: 100%;
-  width: 100%;
+  width: 100px;
 
   background: var(--color-selection-background);
   > div {

@@ -16,6 +16,8 @@ const colors = [
   "#ffa600"
 ];
 
+const colors_3 = ["#003f5c", "#bc5090", "#ffa600"];
+
 export const ChartModel = types
   .model("ChartModel", {
     data: types.maybeNull(types.frozen()),
@@ -40,6 +42,7 @@ export const ChartModel = types
       self.data = data;
     },
     setUpScales({ width }) {
+      console.log(self.data);
       if (!self.data) return;
       self.ready = false;
       let maxY, minY;
@@ -53,9 +56,8 @@ export const ChartModel = types
         chartHeight
       } = self.paddingAndMargins;
       console.log(self.data);
-      for (const city in self.data) {
-        const { data } = self.data[city];
-        data.forEach(({ tweet_count, end }) => {
+      self.data.forEach(({ queryName, result }) => {
+        result.data.forEach(({ tweet_count, end }) => {
           const time = new Date(end).getTime();
           if (tweet_count > maxY || !maxY) maxY = tweet_count;
           if (tweet_count < minY || !minY) minY = tweet_count;
@@ -68,8 +70,8 @@ export const ChartModel = types
             minX = time;
           }
         });
-        if (data.length > maxX) maxX = data.length;
-      }
+      });
+
       console.log({ maxY, minY, minX, maxX });
       self.scaleY = scaleSqrt()
         //.base(2)
@@ -106,25 +108,35 @@ export const ChartModel = types
     getCities() {
       const cities = [];
       let idx = 2;
-      for (const city in self.data) {
+      self.data.forEach(({ queryName }, idx) => {
         cities[idx] = {
-          name: city,
+          name: queryName,
           color: colors[idx % colors.length]
         };
         idx++;
-      }
+      });
+
       return cities;
     },
-    getPoints({ data, name }) {
+    getPoints({ data, idx }) {
       console.log({ data, name });
-      return data.map(({ tweet_count, end }) => ({
-        y: self.scaleY(tweet_count),
-        x: self.scaleX(new Date(end).getTime()),
-        label: name
-      }));
+      return {
+        points: data
+          .filter(({ end }) => {
+            return new Date(end).getHours() === 0;
+          })
+          .map(({ tweet_count, end, start }) => ({
+            y: self.scaleY(tweet_count),
+            x: self.scaleX(new Date(end).getTime()),
+            start,
+            end,
+            query: self.data[idx].query,
+            label: name
+          })),
+        color: colors[(idx + 2) % colors.length]
+      };
     },
-    getLine({ data, name, idx }) {
-      console.log({ data, name });
+    getLine({ data, idx }) {
       return {
         path: data
           .map(

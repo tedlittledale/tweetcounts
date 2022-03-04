@@ -28,10 +28,10 @@ const queries = {
   denazification: `((denazification) OR url:"sputniknews.com" url:"rt.com")`
 };
 
-const getCount = ({ key }) => {
+const getCount = ({ query }) => {
   return new Promise(async (resolve, reject) => {
     const params = {
-      query: queries[key]
+      query
     };
     console.log({
       headers: {
@@ -57,22 +57,19 @@ const getCount = ({ key }) => {
 
 export default async function handler(req, res) {
   console.log();
-  const { queries } = req.query;
-  console.log(decodeURIComponent(JSON.parse(queries)));
-  const results = {};
-  //   await Object.keys(JSON.parse(queries)).reduce(async (memo, key) => {
-  //     await memo;
-  //     console.log({ key });
-  //     const result = await getCount({ key });
-  //     console.log({ result });
-  //     // console.log(hardCodedResults[key]);
-  //     // result.data = hardCodedResults[key]
-  //     //   ? uniqBy(
-  //     //       ({ end }) => end,
-  //     //       concat(hardCodedResults[key].data, result.data)
-  //     //     )
-  //     //   : result.data;
-  //     results[key] = result;
-  //   }, undefined);
+  const { query } = req.query;
+  const parsedQuery = JSON.parse(decodeURIComponent(query));
+  const results = [];
+  await Promise.all(
+    parsedQuery.map(async ({ name, query }, idx) => {
+      const result = await getCount({ name, query });
+      results[idx] = {
+        queryName: name,
+        query: parsedQuery,
+        result
+      };
+    })
+  );
+  res.status(200).json({ results });
   return results;
 }
